@@ -28,33 +28,33 @@ const Hero = () => {
       onMouseMove={handleMouseMove}
       className={cn(
         "relative overflow-hidden bg-hero min-h-screen flex items-center",
-        "pt-32 pb-20 md:pt-36 md:pb-24"
+        "pt-20 pb-16 md:pt-28 md:pb-20 lg:pt-32 lg:pb-24"
       )}
       aria-label="Hero"
     >
       {/* Animated Background Elements */}
       <div className="absolute inset-0 -z-10">
-        <div className="absolute top-20 left-10 w-72 h-72 bg-secondary/10 rounded-full blur-3xl animate-pulse" />
-        <div className="absolute bottom-20 right-10 w-96 h-96 bg-primary/10 rounded-full blur-3xl animate-pulse delay-1000" />
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-gradient-to-r from-secondary/5 to-primary/5 rounded-full blur-3xl" />
+        <div className="absolute top-10 left-4 w-48 h-48 md:top-20 md:left-10 md:w-72 md:h-72 bg-secondary/10 rounded-full blur-3xl animate-pulse" />
+        <div className="absolute bottom-10 right-4 w-64 h-64 md:bottom-20 md:right-10 md:w-96 md:h-96 bg-primary/10 rounded-full blur-3xl animate-pulse delay-1000" />
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] md:w-[600px] md:h-[600px] lg:w-[800px] lg:h-[800px] bg-gradient-to-r from-secondary/5 to-primary/5 rounded-full blur-3xl" />
       </div>
 
-      <div className="container relative z-10">
+      <div className="container relative z-10 px-4 sm:px-6">
         <div className="mx-auto max-w-4xl text-center">
           {/* Badge */}
           <div className={cn(
-            "inline-flex items-center gap-2 rounded-full border border-border/20 bg-background/10 backdrop-blur-sm px-6 py-3 text-sm tracking-wide text-muted-foreground mb-8",
+            "inline-flex items-center gap-2 rounded-full border border-border/20 bg-background/10 backdrop-blur-sm px-4 py-2 md:px-6 md:py-3 text-xs md:text-sm tracking-wide text-muted-foreground mb-6 md:mb-8",
             "transition-all duration-700 delay-300",
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
           )}>
-            <Sparkles className="h-4 w-4 text-secondary" />
+            <Sparkles className="h-3 w-3 md:h-4 md:w-4 text-secondary" />
             <span>Modern • Minimal • Impactful</span>
-            <Palette className="h-4 w-4 text-primary" />
+            <Palette className="h-3 w-3 md:h-4 md:w-4 text-primary" />
           </div>
 
           {/* Main Heading */}
           <h1 className={cn(
-            "text-5xl md:text-7xl font-extrabold tracking-tight text-foreground mb-6 leading-tight",
+            "text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-extrabold tracking-tight text-foreground mb-4 md:mb-6 leading-tight",
             "transition-all duration-700 delay-500",
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
           )}>
@@ -69,7 +69,7 @@ const Hero = () => {
 
           {/* Description */}
           <p className={cn(
-            "text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto mb-10 leading-relaxed",
+            "text-lg sm:text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto mb-8 md:mb-10 leading-relaxed px-4 sm:px-0",
             "transition-all duration-700 delay-700",
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
           )}>
@@ -79,18 +79,18 @@ const Hero = () => {
 
           {/* CTA Buttons */}
           <div className={cn(
-            "flex flex-col items-center justify-center gap-4 sm:flex-row",
+            "flex flex-col items-center justify-center gap-3 sm:gap-4 px-4 sm:px-0",
             "transition-all duration-700 delay-1000",
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
           )}>
             <Button 
               asChild 
               size="lg" 
-              className="bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 text-white shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105 group px-8 py-6 text-lg font-semibold"
+              className="bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 text-white shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105 group w-full sm:w-auto px-6 py-4 md:px-8 md:py-6 text-base md:text-lg font-semibold"
             >
-              <a href="#work" aria-label="View portfolio" className="flex items-center gap-2">
+              <a href="#work" aria-label="View portfolio" className="flex items-center justify-center gap-2">
                 View Portfolio
-                <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
+                <ArrowRight className="h-4 w-4 md:h-5 md:w-5 transition-transform group-hover:translate-x-1" />
               </a>
             </Button>
             
@@ -98,10 +98,10 @@ const Hero = () => {
               asChild 
               variant="outline" 
               size="lg" 
-              className="border-2 border-border hover:border-secondary hover:bg-secondary/5 transition-all duration-300 hover:scale-105 px-8 py-6 text-lg font-semibold backdrop-blur-sm"
+              className="border-2 border-border hover:border-secondary hover:bg-secondary/5 transition-all duration-300 hover:scale-105 w-full sm:w-auto px-6 py-4 md:px-8 md:py-6 text-base md:text-lg font-semibold backdrop-blur-sm"
             >
-              <a href="#contact" aria-label="Contact designer" className="flex items-center gap-2">
-                <Zap className="h-5 w-5 text-secondary" />
+              <a href="#contact" aria-label="Contact designer" className="flex items-center justify-center gap-2">
+                <Zap className="h-4 w-4 md:h-5 md:w-5 text-secondary" />
                 Contact Me
               </a>
             </Button>
@@ -109,12 +109,12 @@ const Hero = () => {
 
           {/* Scroll Indicator */}
           <div className={cn(
-            "mt-16 flex flex-col items-center gap-2 text-muted-foreground/60",
+            "mt-12 md:mt-16 flex flex-col items-center gap-2 text-muted-foreground/60",
             "transition-all duration-700 delay-1200",
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
           )}>
-            <span className="text-sm">Scroll to explore</span>
-            <div className="w-0.5 h-8 bg-gradient-to-b from-muted-foreground/40 to-transparent animate-pulse" />
+            <span className="text-xs md:text-sm">Scroll to explore</span>
+            <div className="w-0.5 h-6 md:h-8 bg-gradient-to-b from-muted-foreground/40 to-transparent animate-pulse" />
           </div>
         </div>
       </div>

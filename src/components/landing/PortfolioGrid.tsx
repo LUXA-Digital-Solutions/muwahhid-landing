@@ -71,30 +71,30 @@ const PortfolioGrid = () => {
   const [hoveredId, setHoveredId] = useState<number | null>(null);
 
   return (
-    <section id="work" className="py-20 md:py-28" aria-labelledby="work-heading">
-      <div className="container">
+    <section id="work" className="py-16 md:py-20 lg:py-28" aria-labelledby="work-heading">
+      <div className="container px-4 sm:px-6">
         {/* Enhanced Header */}
-        <div className="text-center mb-16">
+        <div className="text-center mb-12 md:mb-16">
           <h2 
             id="work-heading" 
-            className="text-4xl md:text-6xl font-bold tracking-tight text-foreground mb-6"
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-foreground mb-4 md:mb-6"
           >
             <span className="bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text text-transparent">
               Selected Work
             </span>
           </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+          <p className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed px-4 sm:px-0">
             A curated collection of recent projects showcasing strategic design thinking, 
             technical expertise, and creative innovation across various mediums.
           </p>
         </div>
 
         {/* Portfolio Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
           {items.map((item) => (
             <article 
               key={item.id}
-              className="group relative overflow-hidden rounded-2xl border border-border/20 bg-card/50 backdrop-blur-sm transition-all duration-500 hover:scale-[1.02] hover:shadow-2xl hover:border-secondary/30"
+              className="group relative overflow-hidden rounded-xl sm:rounded-2xl border border-border/20 bg-card/50 backdrop-blur-sm transition-all duration-500 hover:scale-[1.02] hover:shadow-2xl hover:border-secondary/30"
               onMouseEnter={() => setHoveredId(item.id)}
               onMouseLeave={() => setHoveredId(null)}
             >
@@ -111,55 +111,57 @@ const PortfolioGrid = () => {
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                 
                 {/* Category Badge */}
-                <div className="absolute top-4 left-4">
-                  <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-background/90 backdrop-blur-sm text-foreground border border-border/20">
+                <div className="absolute top-3 left-3 sm:top-4 sm:left-4">
+                  <span className="inline-flex items-center px-2 py-1 sm:px-3 sm:py-1 rounded-full text-xs font-medium bg-background/90 backdrop-blur-sm text-foreground border border-border/20">
                     {item.category}
                   </span>
                 </div>
 
                 {/* View Detail Button */}
-                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500">
+                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500 p-4">
                   <Button 
                     asChild 
                     size="lg" 
-                    className="bg-white/90 hover:bg-white text-foreground border-0 shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-110"
+                    className="bg-white/90 hover:bg-white text-foreground border-0 shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-110 w-full sm:w-auto"
                   >
-                    <a href={`/portfolio/${item.id}`} className="flex items-center gap-2">
+                    <a href={`/portfolio/${item.id}`} className="flex items-center justify-center gap-2">
                       <Eye className="h-4 w-4" />
-                      View Details
+                      <span className="hidden sm:inline">View Details</span>
+                      <span className="sm:hidden">View</span>
                     </a>
                   </Button>
                 </div>
               </div>
 
               {/* Content */}
-              <div className="p-6">
-                <div className="flex items-start justify-between mb-3">
-                  <h3 className="text-lg font-semibold text-foreground group-hover:text-secondary transition-colors duration-300">
+              <div className="p-4 sm:p-6">
+                <div className="flex items-start justify-between mb-2 sm:mb-3">
+                  <h3 className="text-base sm:text-lg font-semibold text-foreground group-hover:text-secondary transition-colors duration-300 leading-tight">
                     {item.title}
                   </h3>
-                  <ArrowUpRight className="h-5 w-5 text-muted-foreground group-hover:text-secondary transition-all duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />
+                  <ArrowUpRight className="h-4 w-4 sm:h-5 sm:w-5 text-muted-foreground group-hover:text-secondary transition-all duration-300 group-hover:translate-x-1 group-hover:-translate-y-1 flex-shrink-0 ml-2" />
                 </div>
                 
-                <p className="text-sm text-muted-foreground mb-4 leading-relaxed">
+                <p className="text-xs sm:text-sm text-muted-foreground mb-3 sm:mb-4 leading-relaxed line-clamp-2">
                   {item.description}
                 </p>
 
                 {/* Meta Information */}
-                <div className="flex items-center justify-between text-xs text-muted-foreground mb-4">
-                  <div className="flex items-center gap-2">
+                <div className="flex items-center justify-between text-xs text-muted-foreground mb-3 sm:mb-4">
+                  <div className="flex items-center gap-1 sm:gap-2">
                     <Calendar className="h-3 w-3" />
                     <span>{item.year}</span>
                   </div>
-                  <div className="flex items-center gap-2">
+                  <div className="flex items-center gap-1 sm:gap-2">
                     <Tag className="h-3 w-3" />
-                    <span>{item.category}</span>
+                    <span className="hidden sm:inline">{item.category}</span>
+                    <span className="sm:hidden">{item.category.split(' ')[0]}</span>
                   </div>
                 </div>
 
                 {/* Tags */}
-                <div className="flex flex-wrap gap-2">
-                  {item.tags.map((tag, index) => (
+                <div className="flex flex-wrap gap-1 sm:gap-2">
+                  {item.tags.slice(0, 2).map((tag, index) => (
                     <span 
                       key={index}
                       className="inline-flex items-center px-2 py-1 rounded-md text-xs font-medium bg-secondary/10 text-secondary border border-secondary/20"
@@ -167,12 +169,17 @@ const PortfolioGrid = () => {
                       {tag}
                     </span>
                   ))}
+                  {item.tags.length > 2 && (
+                    <span className="inline-flex items-center px-2 py-1 rounded-md text-xs font-medium bg-muted text-muted-foreground border border-border">
+                      +{item.tags.length - 2}
+                    </span>
+                  )}
                 </div>
               </div>
 
               {/* Hover Effect Border */}
               <div className={cn(
-                "absolute inset-0 rounded-2xl border-2 border-transparent transition-all duration-500",
+                "absolute inset-0 rounded-xl sm:rounded-2xl border-2 border-transparent transition-all duration-500",
                 hoveredId === item.id ? "border-secondary/50" : ""
               )} />
             </article>
@@ -180,16 +187,16 @@ const PortfolioGrid = () => {
         </div>
 
         {/* View All Button */}
-        <div className="text-center mt-16">
+        <div className="text-center mt-12 md:mt-16">
           <Button 
             asChild 
             variant="outline" 
             size="lg" 
-            className="border-2 border-border hover:border-secondary hover:bg-secondary/5 transition-all duration-300 hover:scale-105 px-8 py-6 text-lg font-semibold"
+            className="border-2 border-border hover:border-secondary hover:bg-secondary/5 transition-all duration-300 hover:scale-105 w-full sm:w-auto px-6 py-4 md:px-8 md:py-6 text-base md:text-lg font-semibold"
           >
-            <a href="/portfolio" className="flex items-center gap-2">
+            <a href="/portfolio" className="flex items-center justify-center gap-2">
               View All Projects
-              <ArrowUpRight className="h-5 w-5 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
+              <ArrowUpRight className="h-4 w-4 md:h-5 md:w-5 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
             </a>
           </Button>
         </div>

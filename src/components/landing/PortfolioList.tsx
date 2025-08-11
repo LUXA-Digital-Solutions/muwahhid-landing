@@ -143,54 +143,54 @@ const PortfolioList = () => {
   const regularItems = filteredItems.filter(item => !item.featured);
 
   return (
-    <div className="min-h-screen bg-background pt-20">
+    <div className="min-h-screen bg-background pt-16 md:pt-20">
       {/* Header */}
       <div className="bg-gradient-to-b from-background to-muted/20 border-b border-border">
-        <div className="container py-16">
-          <div className="text-center mb-12">
-            <h1 className="text-5xl md:text-7xl font-bold tracking-tight text-foreground mb-6">
+        <div className="container py-12 md:py-16 px-4 sm:px-6">
+          <div className="text-center mb-8 md:mb-12">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-tight text-foreground mb-4 md:mb-6">
               <span className="bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text text-transparent">
                 Portfolio
               </span>
             </h1>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+            <p className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed px-4 sm:px-0">
               Explore a diverse collection of projects showcasing strategic design thinking, 
               technical expertise, and creative innovation across various mediums and industries.
             </p>
           </div>
 
           {/* Search and Filters */}
-          <div className="max-w-4xl mx-auto space-y-6">
+          <div className="max-w-4xl mx-auto space-y-4 md:space-y-6">
             {/* Search Bar */}
             <div className="relative">
-              <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 h-5 w-5 text-muted-foreground" />
+              <Search className="absolute left-3 md:left-4 top-1/2 transform -translate-y-1/2 h-4 w-4 md:h-5 md:w-5 text-muted-foreground" />
               <Input
                 type="text"
                 placeholder="Search projects, tags, or descriptions..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="pl-12 pr-4 py-6 text-lg border-2 border-border/20 focus:border-secondary transition-colors duration-300"
+                className="pl-10 md:pl-12 pr-4 py-4 md:py-6 text-base md:text-lg border-2 border-border/20 focus:border-secondary transition-colors duration-300"
               />
             </div>
 
             {/* Filter Controls */}
-            <div className="flex flex-wrap items-center justify-between gap-4">
-              <div className="flex items-center gap-4">
+            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+              <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3 w-full sm:w-auto">
                 <Button
                   variant="outline"
                   onClick={() => setShowFilters(!showFilters)}
-                  className="flex items-center gap-2 border-2 border-border hover:border-secondary"
+                  className="flex items-center gap-2 border-2 border-border hover:border-secondary w-full sm:w-auto justify-center"
                 >
                   <Filter className="h-4 w-4" />
                   Filters
                 </Button>
                 
                 {showFilters && (
-                  <div className="flex items-center gap-3">
+                  <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3 w-full sm:w-auto">
                     <select
                       value={selectedCategory}
                       onChange={(e) => setSelectedCategory(e.target.value)}
-                      className="px-3 py-2 rounded-lg border border-border bg-background text-foreground focus:border-secondary transition-colors duration-300"
+                      className="w-full sm:w-auto px-3 py-2 rounded-lg border border-border bg-background text-foreground focus:border-secondary transition-colors duration-300 text-sm md:text-base"
                     >
                       {categories.map(category => (
                         <option key={category} value={category}>{category}</option>
@@ -200,7 +200,7 @@ const PortfolioList = () => {
                     <select
                       value={selectedYear}
                       onChange={(e) => setSelectedYear(e.target.value)}
-                      className="px-3 py-2 rounded-lg border border-border bg-background text-foreground focus:border-secondary transition-colors duration-300"
+                      className="w-full sm:w-auto px-3 py-2 rounded-lg border border-border bg-background text-foreground focus:border-secondary transition-colors duration-300 text-sm md:text-base"
                     >
                       {years.map(year => (
                         <option key={year} value={year}>{year}</option>
@@ -210,7 +210,7 @@ const PortfolioList = () => {
                 )}
               </div>
 
-              <div className="flex items-center gap-2 border border-border rounded-lg p-1">
+              <div className="flex items-center gap-2 border border-border rounded-lg p-1 w-full sm:w-auto justify-center">
                 <Button
                   variant={viewMode === "grid" ? "default" : "ghost"}
                   size="sm"
@@ -231,7 +231,7 @@ const PortfolioList = () => {
             </div>
 
             {/* Results Count */}
-            <div className="text-center text-muted-foreground">
+            <div className="text-center text-muted-foreground text-sm md:text-base">
               Showing {filteredItems.length} of {portfolioItems.length} projects
             </div>
           </div>
@@ -240,10 +240,10 @@ const PortfolioList = () => {
 
       {/* Featured Projects */}
       {featuredItems.length > 0 && (
-        <section className="py-16">
-          <div className="container">
-            <h2 className="text-3xl font-bold text-foreground mb-8 text-center">Featured Projects</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <section className="py-12 md:py-16">
+          <div className="container px-4 sm:px-6">
+            <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-6 md:mb-8 text-center">Featured Projects</h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
               {featuredItems.map((item) => (
                 <PortfolioCard key={item.id} item={item} viewMode={viewMode} />
               ))}
@@ -253,18 +253,18 @@ const PortfolioList = () => {
       )}
 
       {/* All Projects */}
-      <section className="py-16">
-        <div className="container">
-          <h2 className="text-3xl font-bold text-foreground mb-8 text-center">All Projects</h2>
+      <section className="py-12 md:py-16">
+        <div className="container px-4 sm:px-6">
+          <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-6 md:mb-8 text-center">All Projects</h2>
           
           {viewMode === "grid" ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
               {regularItems.map((item) => (
                 <PortfolioCard key={item.id} item={item} viewMode={viewMode} />
               ))}
             </div>
           ) : (
-            <div className="space-y-6">
+            <div className="space-y-4 md:space-y-6">
               {regularItems.map((item) => (
                 <PortfolioCard key={item.id} item={item} viewMode={viewMode} />
               ))}
@@ -275,11 +275,11 @@ const PortfolioList = () => {
 
       {/* Empty State */}
       {filteredItems.length === 0 && (
-        <div className="container py-20 text-center">
+        <div className="container py-16 md:py-20 text-center px-4 sm:px-6">
           <div className="max-w-md mx-auto">
-            <Search className="h-16 w-16 text-muted-foreground mx-auto mb-6" />
-            <h3 className="text-2xl font-semibold text-foreground mb-4">No projects found</h3>
-            <p className="text-muted-foreground mb-6">
+            <Search className="h-12 w-12 md:h-16 md:w-16 text-muted-foreground mx-auto mb-4 md:mb-6" />
+            <h3 className="text-xl md:text-2xl font-semibold text-foreground mb-3 md:mb-4">No projects found</h3>
+            <p className="text-muted-foreground mb-4 md:mb-6 text-sm md:text-base">
               Try adjusting your search terms or filters to find what you're looking for.
             </p>
             <Button
@@ -289,6 +289,7 @@ const PortfolioList = () => {
                 setSelectedCategory("All");
                 setSelectedYear("All");
               }}
+              className="w-full sm:w-auto"
             >
               Clear all filters
             </Button>
@@ -303,8 +304,8 @@ const PortfolioList = () => {
 const PortfolioCard = ({ item, viewMode }: { item: PortfolioItem; viewMode: "grid" | "list" }) => {
   if (viewMode === "list") {
     return (
-      <article className="group flex items-center gap-6 p-6 rounded-2xl border border-border/20 bg-card/50 backdrop-blur-sm hover:border-secondary/30 transition-all duration-300 hover:shadow-lg">
-        <div className="flex-shrink-0 w-32 h-24 overflow-hidden rounded-lg">
+      <article className="group flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6 p-4 md:p-6 rounded-xl md:rounded-2xl border border-border/20 bg-card/50 backdrop-blur-sm hover:border-secondary/30 transition-all duration-300 hover:shadow-lg">
+        <div className="flex-shrink-0 w-full sm:w-32 h-24 sm:h-24 overflow-hidden rounded-lg">
           <img
             src={item.image}
             alt={item.title}
@@ -314,15 +315,15 @@ const PortfolioCard = ({ item, viewMode }: { item: PortfolioItem; viewMode: "gri
         
         <div className="flex-1 min-w-0">
           <div className="flex items-start justify-between mb-2">
-            <h3 className="text-xl font-semibold text-foreground group-hover:text-secondary transition-colors duration-300">
+            <h3 className="text-lg md:text-xl font-semibold text-foreground group-hover:text-secondary transition-colors duration-300">
               {item.title}
             </h3>
-            <ArrowUpRight className="h-5 w-5 text-muted-foreground group-hover:text-secondary transition-all duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />
+            <ArrowUpRight className="h-4 w-4 md:h-5 md:w-5 text-muted-foreground group-hover:text-secondary transition-all duration-300 group-hover:translate-x-1 group-hover:-translate-y-1 flex-shrink-0 ml-2" />
           </div>
           
-          <p className="text-muted-foreground mb-3 line-clamp-2">{item.description}</p>
+          <p className="text-muted-foreground mb-3 line-clamp-2 text-sm md:text-base">{item.description}</p>
           
-          <div className="flex items-center gap-4 text-sm text-muted-foreground">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-2 sm:gap-4 text-sm text-muted-foreground">
             <span className="inline-flex items-center gap-1">
               <Tag className="h-3 w-3" />
               {item.category}
@@ -334,8 +335,8 @@ const PortfolioCard = ({ item, viewMode }: { item: PortfolioItem; viewMode: "gri
           </div>
         </div>
         
-        <Button asChild size="sm" className="flex-shrink-0">
-          <a href={`/portfolio/${item.id}`} className="flex items-center gap-2">
+        <Button asChild size="sm" className="flex-shrink-0 w-full sm:w-auto">
+          <a href={`/portfolio/${item.id}`} className="flex items-center justify-center gap-2">
             <Eye className="h-4 w-4" />
             View
           </a>
@@ -345,7 +346,7 @@ const PortfolioCard = ({ item, viewMode }: { item: PortfolioItem; viewMode: "gri
   }
 
   return (
-    <article className="group relative overflow-hidden rounded-2xl border border-border/20 bg-card/50 backdrop-blur-sm transition-all duration-500 hover:scale-[1.02] hover:shadow-2xl hover:border-secondary/30">
+    <article className="group relative overflow-hidden rounded-xl md:rounded-2xl border border-border/20 bg-card/50 backdrop-blur-sm transition-all duration-500 hover:scale-[1.02] hover:shadow-2xl hover:border-secondary/30">
       <div className="relative overflow-hidden aspect-[4/3]">
         <img
           src={item.image}
@@ -356,51 +357,53 @@ const PortfolioCard = ({ item, viewMode }: { item: PortfolioItem; viewMode: "gri
         
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
         
-        <div className="absolute top-4 left-4">
-          <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-background/90 backdrop-blur-sm text-foreground border border-border/20">
+        <div className="absolute top-3 left-3 sm:top-4 sm:left-4">
+          <span className="inline-flex items-center px-2 py-1 sm:px-3 sm:py-1 rounded-full text-xs font-medium bg-background/90 backdrop-blur-sm text-foreground border border-border/20">
             {item.category}
           </span>
         </div>
 
-        <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500">
+        <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500 p-4">
           <Button 
             asChild 
             size="lg" 
-            className="bg-white/90 hover:bg-white text-foreground border-0 shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-110"
+            className="bg-white/90 hover:bg-white text-foreground border-0 shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-110 w-full sm:w-auto"
           >
-            <a href={`/portfolio/${item.id}`} className="flex items-center gap-2">
+            <a href={`/portfolio/${item.id}`} className="flex items-center justify-center gap-2">
               <Eye className="h-4 w-4" />
-              View Details
+              <span className="hidden sm:inline">View Details</span>
+              <span className="sm:hidden">View</span>
             </a>
           </Button>
         </div>
       </div>
 
-      <div className="p-6">
-        <div className="flex items-start justify-between mb-3">
-          <h3 className="text-lg font-semibold text-foreground group-hover:text-secondary transition-colors duration-300">
+      <div className="p-4 sm:p-6">
+        <div className="flex items-start justify-between mb-2 sm:mb-3">
+          <h3 className="text-base sm:text-lg font-semibold text-foreground group-hover:text-secondary transition-colors duration-300 leading-tight">
             {item.title}
           </h3>
-          <ArrowUpRight className="h-5 w-5 text-muted-foreground group-hover:text-secondary transition-all duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />
+          <ArrowUpRight className="h-4 w-4 sm:h-5 sm:w-5 text-muted-foreground group-hover:text-secondary transition-all duration-300 group-hover:translate-x-1 group-hover:-translate-y-1 flex-shrink-0 ml-2" />
         </div>
         
-        <p className="text-sm text-muted-foreground mb-4 leading-relaxed line-clamp-2">
+        <p className="text-xs sm:text-sm text-muted-foreground mb-3 sm:mb-4 leading-relaxed line-clamp-2">
           {item.description}
         </p>
 
-        <div className="flex items-center justify-between text-xs text-muted-foreground mb-4">
-          <div className="flex items-center gap-2">
+        <div className="flex items-center justify-between text-xs text-muted-foreground mb-3 sm:mb-4">
+          <div className="flex items-center gap-1 sm:gap-2">
             <Calendar className="h-3 w-3" />
             <span>{item.year}</span>
           </div>
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-1 sm:gap-2">
             <Tag className="h-3 w-3" />
-            <span>{item.category}</span>
+            <span className="hidden sm:inline">{item.category}</span>
+            <span className="sm:hidden">{item.category.split(' ')[0]}</span>
           </div>
         </div>
 
-        <div className="flex flex-wrap gap-2">
-          {item.tags.slice(0, 3).map((tag: string, index: number) => (
+        <div className="flex flex-wrap gap-1 sm:gap-2">
+          {item.tags.slice(0, 2).map((tag: string, index: number) => (
             <span 
               key={index}
               className="inline-flex items-center px-2 py-1 rounded-md text-xs font-medium bg-secondary/10 text-secondary border border-secondary/20"
@@ -408,6 +411,11 @@ const PortfolioCard = ({ item, viewMode }: { item: PortfolioItem; viewMode: "gri
               {tag}
             </span>
           ))}
+          {item.tags.length > 2 && (
+            <span className="inline-flex items-center px-2 py-1 rounded-md text-xs font-medium bg-muted text-muted-foreground border border-border">
+              +{item.tags.length - 2}
+            </span>
+          )}
         </div>
       </div>
     </article>
