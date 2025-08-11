@@ -1,0 +1,81 @@
+# Cursor Rules: Graphic Designer Portfolio Project
+
+## Project Intelligence & Patterns
+
+### Code Organization
+- **Component Structure**: Landing components in `src/components/landing/`, UI components in `src/components/ui/`
+- **File Naming**: PascalCase for components, camelCase for utilities, kebab-case for assets
+- **Import Paths**: Use `@/` alias for clean imports (e.g., `@/components/ui/button`)
+- **Component Composition**: Build components using shadcn/ui primitives and custom styling
+
+### Design System Patterns
+- **Color Usage**: Brand colors defined in HSL format in `src/index.css`
+  - Navy: `hsl(214 67% 8%)` - Primary text and backgrounds
+  - Teal: `hsl(174 100% 29%)` - Secondary accents and highlights
+  - Red: `hsl(0 100% 56%)` - Primary actions and emphasis
+  - Gray: `hsl(0 0% 86%)` - Backgrounds and borders
+- **Spacing**: Use Tailwind's spacing scale consistently (py-12, px-6, gap-6)
+- **Typography**: Maintain clear hierarchy with consistent font weights and sizes
+- **Shadows**: Use custom shadow utilities (`.elevated`, `.glow`) for depth
+
+### Component Patterns
+- **Section Components**: Wrap content in semantic `<section>` tags with consistent padding
+- **Container Pattern**: Use `.container` class for content width constraints
+- **Card Components**: Apply `.elevated` class for raised card effects
+- **Button Usage**: Use shadcn/ui Button component with `asChild` for links
+- **Responsive Design**: Mobile-first approach with `sm:`, `md:`, `lg:` breakpoints
+
+### Styling Preferences
+- **Tailwind First**: Use Tailwind utilities before custom CSS
+- **Custom CSS**: Define design tokens and complex utilities in `src/index.css`
+- **CSS Variables**: Use HSL color variables for consistent theming
+- **Component Variants**: Leverage class-variance-authority for component styling
+- **Hover Effects**: Subtle scale transforms and shadow changes for interactions
+
+### Performance Patterns
+- **Image Loading**: Use `loading="lazy"` for portfolio images
+- **Bundle Optimization**: Leverage Vite's built-in optimizations
+- **Code Splitting**: Route-based splitting with React Router
+- **Asset Management**: Import images directly for build-time optimization
+
+### Accessibility Patterns
+- **Semantic HTML**: Use proper heading hierarchy and semantic elements
+- **ARIA Labels**: Provide descriptive labels for interactive elements
+- **Keyboard Navigation**: Ensure all interactive elements are keyboard accessible
+- **Color Contrast**: Maintain sufficient contrast ratios with brand colors
+- **Screen Reader Support**: Use proper alt text and ARIA descriptions
+
+### Development Workflow
+- **Component Development**: Start with structure, add styling, then interactions
+- **Responsive Testing**: Test mobile-first, then enhance for larger screens
+- **Code Quality**: Run `npm run lint` before committing changes
+- **Performance**: Monitor bundle size and loading performance
+- **Browser Testing**: Test across Chrome, Firefox, Safari, and Edge
+
+### Content Strategy
+- **Hero Section**: Clear value proposition with primary and secondary CTAs
+- **Services**: Three main service areas with concise descriptions
+- **Portfolio**: Curated selection of best work with descriptive titles
+- **About**: Professional credibility with specific experience details
+- **Contact**: Multiple engagement paths (email, portfolio exploration)
+
+### Technical Decisions
+- **React 18**: Use modern React features and patterns
+- **TypeScript**: Maintain strict typing and proper interfaces
+- **shadcn/ui**: Leverage component library for consistency and accessibility
+- **Tailwind CSS**: Utility-first approach with custom design system
+- **Vite**: Fast development and optimized production builds
+
+### Future Enhancement Patterns
+- **Interactive Features**: Add subtle animations and micro-interactions
+- **Content Management**: Consider CMS integration for easy updates
+- **Advanced Portfolio**: Detailed project pages and case studies
+- **Performance**: Implement advanced image optimization and lazy loading
+- **Analytics**: Add user behavior tracking and performance monitoring
+
+## Key Insights
+- Project emphasizes Swiss precision with contemporary aesthetics
+- Design system is comprehensive and well-implemented
+- Foundation is solid and ready for enhancement
+- Focus on professional presentation and user experience
+- Modern tech stack with excellent performance characteristics
