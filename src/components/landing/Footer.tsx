@@ -7,164 +7,139 @@ const Footer = () => {
   };
 
   return (
-    <footer className="bg-sidebar text-sidebar-foreground border-t border-sidebar-border relative overflow-hidden" aria-label="Footer">
+    <footer className="relative bg-brand-forest text-brand-cream overflow-hidden">
       {/* Background Elements */}
-      <div className="absolute inset-0 -z-10">
-        <div className="absolute top-0 left-1/4 w-48 h-48 md:w-96 md:h-96 bg-secondary/5 rounded-full blur-3xl" />
-        <div className="absolute bottom-0 right-1/4 w-48 h-48 md:w-96 md:h-96 bg-primary/5 rounded-full blur-3xl" />
+      <div className="absolute inset-0">
+        <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-brand-forest via-brand-forest to-brand-green/20" />
+        <div className="absolute top-20 right-10 w-32 h-32 bg-brand-olive/10 rounded-full blur-3xl" />
+        <div className="absolute bottom-20 left-10 w-40 h-40 bg-brand-green/10 rounded-full blur-3xl" />
       </div>
 
-      <div className="container py-12 md:py-16 lg:py-20 px-4 sm:px-6">
-        {/* Main Footer Content */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12 mb-12 md:mb-16">
+      <div className="container relative z-10 px-4 sm:px-6 py-16 md:py-20">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12">
           {/* Brand Section */}
           <div className="lg:col-span-2">
-            <div className="flex items-center gap-2 md:gap-3 mb-4 md:mb-6">
-              {/* Logo */}
-              <div className="h-8 w-8 md:h-10 md:w-10 transition-all duration-300">
-                <img 
-                  src="/assets/AM_LW.png" 
-                  alt="Muwahhid Logo" 
-                  className="w-full h-full object-contain"
-                />
+            <div className="flex items-center gap-3 mb-6">
+              <div className="h-10 w-10">
+                <img src="/assets/AM_LW.png" alt="Muwahhid Logo" className="w-full h-full object-contain" />
               </div>
-              <span className="text-xl md:text-2xl font-bold tracking-tight">Muwahhid</span>
+              <span className="text-2xl font-bold text-brand-cream">Muwahhid</span>
             </div>
-            <p className="text-muted-foreground mb-4 md:mb-6 max-w-md leading-relaxed text-sm md:text-base">
-              Crafting bold, modern visuals that help brands stand out. 
-              From strategic design systems to impactful campaigns, we create 
-              visual solutions that drive results.
+            <p className="text-brand-cream/80 text-lg mb-6 max-w-md">
+              Crafting exceptional graphic designs that elevate brands and inspire audiences. 
+              Let's create something extraordinary together.
             </p>
-            <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-4">
-              <Button asChild size="sm" variant="outline" className="border-sidebar-border hover:border-sidebar-primary w-full sm:w-auto">
-                <a href="/#contact">Start a Project</a>
-              </Button>
-              <Button asChild size="sm" variant="ghost" className="w-full sm:w-auto">
-                <a href="/portfolio">View Portfolio</a>
-              </Button>
+            <div className="flex space-x-4">
+              <a href="#" className="text-brand-cream/70 hover:text-brand-green transition-colors duration-300" aria-label="LinkedIn">
+                <Linkedin className="h-5 w-5" />
+              </a>
+              <a href="#" className="text-brand-cream/70 hover:text-brand-green transition-colors duration-300" aria-label="Twitter">
+                <Twitter className="h-5 w-5" />
+              </a>
+              <a href="#" className="text-brand-cream/70 hover:text-brand-green transition-colors duration-300" aria-label="Instagram">
+                <Instagram className="h-5 w-5" />
+              </a>
+              <a href="#" className="text-brand-cream/70 hover:text-brand-green transition-colors duration-300" aria-label="Dribbble">
+                <Dribbble className="h-5 w-5" />
+              </a>
             </div>
           </div>
 
           {/* Quick Links */}
           <div>
-            <h3 className="text-base md:text-lg font-semibold mb-4 md:mb-6">Quick Links</h3>
-            <nav className="space-y-2 md:space-y-3">
+            <h3 className="text-lg font-semibold text-brand-cream mb-6">Quick Links</h3>
+            <ul className="space-y-3">
               {[
-                { href: "/#work", label: "Portfolio" },
-                { href: "/#services", label: "Services" },
-                { href: "/#about", label: "About" },
-                { href: "/#contact", label: "Contact" }
-              ].map((item) => (
-                <a 
-                  key={item.href}
-                  href={item.href} 
-                  className="block text-muted-foreground hover:text-sidebar-primary transition-colors duration-300 text-sm md:text-base"
-                >
-                  {item.label}
-                </a>
+                { href: "#work", label: "Portfolio" },
+                { href: "#services", label: "Services" },
+                { href: "#about", label: "About" },
+                { href: "#contact", label: "Contact" }
+              ].map((link) => (
+                <li key={link.href}>
+                  <a 
+                    href={link.href} 
+                    className="text-brand-cream/70 hover:text-brand-green transition-colors duration-300"
+                  >
+                    {link.label}
+                  </a>
+                </li>
               ))}
-            </nav>
+            </ul>
           </div>
 
           {/* Services */}
           <div>
-            <h3 className="text-base md:text-lg font-semibold mb-4 md:mb-6">Services</h3>
-            <nav className="space-y-2 md:space-y-3">
+            <h3 className="text-lg font-semibold text-brand-cream mb-6">Services</h3>
+            <ul className="space-y-3">
               {[
                 "Brand Identity",
-                "Print Design", 
-                "Web Visuals",
+                "Print Design",
+                "Digital Design",
                 "Packaging",
-                "Social Media"
+                "Web Graphics"
               ].map((service) => (
-                <span 
-                  key={service}
-                  className="block text-muted-foreground text-sm md:text-base"
-                >
-                  {service}
-                </span>
+                <li key={service}>
+                  <span className="text-brand-cream/70">{service}</span>
+                </li>
               ))}
-          </nav>
+            </ul>
+          </div>
         </div>
-      </div>
 
-        {/* Contact & Social */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 mb-8 md:mb-12 pt-6 md:pt-8 border-t border-sidebar-border/30">
-          {/* Contact Info */}
-          <div>
-            <h3 className="text-base md:text-lg font-semibold mb-3 md:mb-4">Get in Touch</h3>
-            <div className="space-y-2 md:space-y-3">
-              <div className="flex items-center gap-2 md:gap-3 text-muted-foreground text-sm md:text-base">
-                <Mail className="h-4 w-4 text-sidebar-primary" />
-                <a href="mailto:hello@muwahhid.design" className="hover:text-sidebar-primary transition-colors duration-300">
-                  hello@muwahhid.design
-                </a>
-              </div>
-              <div className="flex items-center gap-2 md:gap-3 text-muted-foreground text-sm md:text-base">
-                <Phone className="h-4 w-4 text-sidebar-primary" />
-                <span>+1 (555) 123-4567</span>
-              </div>
-              <div className="flex items-center gap-2 md:gap-3 text-muted-foreground text-sm md:text-base">
-                <MapPin className="h-4 w-4 text-sidebar-primary" />
-                <span>San Francisco, CA</span>
+        {/* Contact & Newsletter Section */}
+        <div className="mt-16 md:mt-20 pt-8 md:pt-12 border-t border-brand-green/20">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12">
+            {/* Contact Info */}
+            <div>
+              <h3 className="text-lg font-semibold text-brand-cream mb-6">Get in Touch</h3>
+              <div className="space-y-4">
+                <div className="flex items-center gap-3">
+                  <Mail className="h-5 w-5 text-brand-green" />
+                  <a href="mailto:hello@muwahhid.design" className="text-brand-cream/80 hover:text-brand-green transition-colors duration-300">
+                    hello@muwahhid.design
+                  </a>
+                </div>
+                <div className="flex items-center gap-3">
+                  <MapPin className="h-5 w-5 text-brand-green" />
+                  <span className="text-brand-cream/80">Lagos, Nigeria</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <Phone className="h-5 w-5 text-brand-green" />
+                  <span className="text-brand-cream/80">+234 703 757 4762</span>
+                </div>
               </div>
             </div>
-          </div>
 
-          {/* Social Links */}
-          <div>
-            <h3 className="text-base md:text-lg font-semibold mb-3 md:mb-4">Follow Us</h3>
-            <div className="flex items-center gap-3 md:gap-4">
-              {[
-                { icon: Linkedin, href: "#", label: "LinkedIn" },
-                { icon: Twitter, href: "#", label: "Twitter" },
-                { icon: Instagram, href: "#", label: "Instagram" },
-                { icon: Dribbble, href: "#", label: "Dribbble" }
-              ].map((social) => (
-                <a
-                  key={social.label}
-                  href={social.href}
-                  aria-label={social.label}
-                  className="w-8 h-8 md:w-10 md:h-10 rounded-lg bg-sidebar-accent hover:bg-sidebar-primary transition-all duration-300 flex items-center justify-center text-sidebar-foreground hover:text-sidebar-primary-foreground"
-                >
-                  <social.icon className="h-4 w-4 md:h-5 md:w-5" />
-                </a>
-              ))}
-            </div>
-          </div>
-
-          {/* Newsletter */}
-          <div className="lg:col-span-1">
-            <h3 className="text-base md:text-lg font-semibold mb-3 md:mb-4">Stay Updated</h3>
-            <p className="text-muted-foreground mb-3 md:mb-4 text-xs md:text-sm">
-              Get the latest design insights and project updates delivered to your inbox.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-2">
-              <input
-                type="email"
-                placeholder="Enter your email"
-                className="flex-1 px-3 py-2 rounded-lg bg-sidebar-accent border border-sidebar-border text-sidebar-foreground placeholder:text-muted-foreground focus:outline-none focus:border-sidebar-primary transition-colors duration-300 text-sm md:text-base"
-              />
-              <Button size="sm" className="bg-sidebar-primary hover:bg-sidebar-primary/90 text-sidebar-primary-foreground w-full sm:w-auto">
-                Subscribe
-              </Button>
+            {/* Newsletter */}
+            <div>
+              <h3 className="text-lg font-semibold text-brand-cream mb-6">Stay Updated</h3>
+              <p className="text-brand-cream/80 mb-4">
+                Subscribe to our newsletter for design insights and project updates.
+              </p>
+              <div className="flex gap-3">
+                <input
+                  type="email"
+                  placeholder="Enter your email"
+                  className="flex-1 px-4 py-3 bg-brand-cream/10 border border-brand-green/20 rounded-lg text-brand-cream placeholder-brand-cream/50 focus:outline-none focus:border-brand-green focus:bg-brand-cream/20 transition-all duration-300"
+                />
+                <Button className="bg-gradient-to-r from-brand-green to-brand-olive hover:from-brand-green/90 hover:to-brand-olive/90 text-white px-6 py-3">
+                  Subscribe
+                </Button>
+              </div>
             </div>
           </div>
         </div>
 
         {/* Bottom Bar */}
-        <div className="flex flex-col md:flex-row items-center justify-between gap-4 pt-6 md:pt-8 border-t border-sidebar-border/30">
-          <div className="flex flex-col sm:flex-row items-center gap-2 sm:gap-6 text-xs md:text-sm text-muted-foreground text-center sm:text-left">
-            <p>© {new Date().getFullYear()} Muwahhid — Graphic Designer</p>
-            <span className="hidden sm:inline">•</span>
-            <span className="hidden sm:inline">All rights reserved</span>
+        <div className="mt-12 md:mt-16 pt-8 border-t border-brand-green/20 flex flex-col md:flex-row items-center justify-between gap-4">
+          <div className="text-brand-cream/70 text-sm">
+            © 2024 Muwahhid. All rights reserved.
           </div>
-          
-          <div className="flex flex-col sm:flex-row items-center gap-3 sm:gap-6 text-xs md:text-sm">
-            <a href="#" className="text-muted-foreground hover:text-sidebar-primary transition-colors duration-300">
+          <div className="flex items-center gap-6 text-sm">
+            <a href="#" className="text-brand-cream/70 hover:text-brand-green transition-colors duration-300">
               Privacy Policy
             </a>
-            <a href="#" className="text-muted-foreground hover:text-sidebar-primary transition-colors duration-300">
+            <a href="#" className="text-brand-cream/70 hover:text-brand-green transition-colors duration-300">
               Terms of Service
             </a>
           </div>
@@ -174,10 +149,10 @@ const Footer = () => {
       {/* Scroll to Top Button */}
       <button
         onClick={scrollToTop}
-        className="absolute bottom-4 md:bottom-6 right-4 md:right-6 w-10 h-10 md:w-12 md:h-12 rounded-full bg-sidebar-primary hover:bg-sidebar-primary/90 text-sidebar-primary-foreground flex items-center justify-center transition-all duration-300 hover:scale-110 shadow-lg"
+        className="fixed bottom-6 right-6 z-50 p-3 bg-gradient-to-r from-brand-green to-brand-olive text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110"
         aria-label="Scroll to top"
       >
-        <ArrowUp className="h-4 w-4 md:h-5 md:w-5" />
+        <ArrowUp className="h-5 w-5" />
       </button>
     </footer>
   );

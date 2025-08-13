@@ -1,261 +1,185 @@
-import { useState, useEffect } from "react";
-import { ArrowUpRight, Eye, Calendar, Tag, Star, Clock, Users, Award } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import p1 from "@/assets/portfolio-01.jpg";
-import p2 from "@/assets/portfolio-02.jpg";
-import p3 from "@/assets/portfolio-03.jpg";
-import p4 from "@/assets/portfolio-04.jpg";
-import p5 from "@/assets/portfolio-05.jpg";
-import p6 from "@/assets/portfolio-06.jpg";
-
-// Enhanced portfolio data with more details
-const items = [
-  {
-    id: 1,
-    src: p1,
-    title: "Poster — Bold Geometry",
-    category: "Print Design",
-    year: "2024",
-    description: "A series of geometric posters exploring bold shapes and vibrant colors for a contemporary art exhibition.",
-    tags: ["Typography", "Geometry", "Print"],
-    featured: true,
-    team: "Solo Designer",
-    duration: "3 weeks",
-    awards: "Design Excellence Award 2024",
-    stats: { engagement: "40%", production: "50+", recognition: "3 Awards" }
-  },
-  {
-    id: 2,
-    src: p2,
-    title: "Branding — Business Cards",
-    category: "Brand Identity",
-    year: "2024",
-    description: "Complete business card system with multiple variations and premium finishes for a tech startup.",
-    tags: ["Branding", "Print", "Identity"],
-    featured: true,
-    team: "Design Team (3)",
-    duration: "4 weeks",
-    awards: "Best Brand Identity 2024",
-    stats: { engagement: "65%", production: "1000+", recognition: "2 Awards" }
-  },
-  {
-    id: 3,
-    src: p3,
-    title: "Album Cover — Abstract",
-    category: "Music Design",
-    year: "2023",
-    description: "Abstract album artwork featuring organic shapes and a sophisticated color palette for an indie band.",
-    tags: ["Music", "Abstract", "Digital"],
-    featured: false,
-    team: "Solo Designer",
-    duration: "2 weeks",
-    stats: { engagement: "25%", production: "1", recognition: "1 Award" }
-  },
-  {
-    id: 4,
-    src: p4,
-    title: "Web Hero — CTA Focus",
-    category: "Web Design",
-    year: "2024",
-    description: "Hero section design with compelling call-to-action elements for a SaaS company landing page.",
-    tags: ["Web", "UI/UX", "Digital"],
-    featured: true,
-    team: "Design Team (2)",
-    duration: "3 weeks",
-    awards: "Web Design Excellence",
-    stats: { engagement: "55%", production: "1", recognition: "1 Award" }
-  },
-  {
-    id: 5,
-    src: p5,
-    title: "Poster Series — System",
-    category: "Print Design",
-    year: "2023",
-    description: "Cohesive poster series maintaining visual consistency while exploring different themes and layouts.",
-    tags: ["Series", "Print", "System"],
-    featured: false,
-    team: "Solo Designer",
-    duration: "5 weeks",
-    stats: { engagement: "30%", production: "25", recognition: "0 Awards" }
-  },
-  {
-    id: 6,
-    src: p6,
-    title: "Identity — Guidelines",
-    category: "Brand Identity",
-    year: "2023",
-    description: "Comprehensive brand identity system with detailed guidelines for consistent application across all touchpoints.",
-    tags: ["Branding", "Guidelines", "System"],
-    featured: true,
-    team: "Design Team (4)",
-    duration: "6 weeks",
-    awards: "Brand Excellence Award",
-    stats: { engagement: "70%", production: "1", recognition: "2 Awards" }
-  },
-];
+import { useEffect, useState } from "react";
+import { Star, Clock, Users, Award, ArrowRight } from "lucide-react";
+import portfolio01 from "@/assets/portfolio-01.jpg";
+import portfolio02 from "@/assets/portfolio-02.jpg";
+import portfolio03 from "@/assets/portfolio-03.jpg";
+import portfolio04 from "@/assets/portfolio-04.jpg";
+import portfolio05 from "@/assets/portfolio-05.jpg";
+import portfolio06 from "@/assets/portfolio-06.jpg";
 
 const PortfolioGrid = () => {
-  const [hoveredId, setHoveredId] = useState<number | null>(null);
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
     setIsVisible(true);
   }, []);
 
+  const items = [
+    {
+      id: 1,
+      title: "Brand Identity System",
+      category: "Branding",
+      image: portfolio01,
+      featured: true,
+      team: "Solo",
+      duration: "3 weeks",
+      awards: "Design Award 2024",
+      stats: "Brand recognition +40%"
+    },
+    {
+      id: 2,
+      title: "Digital Marketing Campaign",
+      category: "Digital",
+      image: portfolio02,
+      featured: false,
+      team: "3 designers",
+      duration: "6 weeks",
+      awards: "Marketing Excellence",
+      stats: "Engagement +65%"
+    },
+    {
+      id: 3,
+      title: "Product Packaging Design",
+      category: "Packaging",
+      image: portfolio03,
+      featured: true,
+      team: "2 designers",
+      duration: "4 weeks",
+      awards: "Packaging Innovation",
+      stats: "Sales +28%"
+    },
+    {
+      id: 4,
+      title: "Website Redesign",
+      category: "Web",
+      image: portfolio04,
+      featured: false,
+      team: "4 designers",
+      duration: "8 weeks",
+      awards: "Web Design Award",
+      stats: "Conversion +45%"
+    },
+    {
+      id: 5,
+      title: "Print Advertising",
+      category: "Print",
+      image: portfolio05,
+      featured: false,
+      team: "Solo",
+      duration: "2 weeks",
+      awards: "Print Excellence",
+      stats: "Response +32%"
+    },
+    {
+      id: 6,
+      title: "Social Media Graphics",
+      category: "Social",
+      image: portfolio06,
+      featured: true,
+      team: "2 designers",
+      duration: "5 weeks",
+      awards: "Social Media Award",
+      stats: "Reach +55%"
+    }
+  ];
+
   return (
-    <section id="work" className="py-16 md:py-20 lg:py-28" aria-labelledby="work-heading">
+    <section id="work" className="py-16 md:py-20 lg:py-24 bg-gradient-to-br from-brand-cream via-brand-cream to-brand-olive/5">
       <div className="container px-4 sm:px-6">
-        {/* Enhanced Header */}
-        <div className={cn(
-          "text-center mb-12 md:mb-16 transition-all duration-700 delay-200",
-          isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-        )}>
-          <h2 
-            id="work-heading" 
-            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-foreground mb-4 md:mb-6"
-          >
-            <span className="bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text text-transparent">
-          Selected Work
-            </span>
-        </h2>
-          <p className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed px-4 sm:px-0">
-            A curated collection of recent projects showcasing strategic design thinking, 
-            technical expertise, and creative innovation across various mediums.
+        {/* Header */}
+        <div className={cn("text-center mb-12 md:mb-16 transition-all duration-700", isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8")}>
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-brand-forest mb-4">
+            Selected <span className="bg-gradient-to-r from-brand-green to-brand-olive bg-clip-text text-transparent">Work</span>
+          </h2>
+          <p className="text-lg md:text-xl text-brand-forest/80 max-w-2xl mx-auto">
+            A curated selection of projects that showcase strategic thinking and creative excellence.
           </p>
         </div>
 
         {/* Portfolio Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 mb-12 md:mb-16">
           {items.map((item, index) => (
-            <article 
+            <article
               key={item.id}
               className={cn(
-                "group relative overflow-hidden rounded-xl sm:rounded-2xl border border-border/20 bg-card/50 backdrop-blur-sm transition-all duration-500 hover:scale-[1.02] hover:shadow-2xl hover:border-secondary/30",
+                "group relative overflow-hidden rounded-2xl bg-white shadow-lg hover:shadow-2xl transition-all duration-500 hover:scale-[1.02] cursor-pointer",
                 "transition-all duration-700",
                 isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
               )}
               style={{ transitionDelay: `${index * 100}ms` }}
-              onMouseEnter={() => setHoveredId(item.id)}
-              onMouseLeave={() => setHoveredId(null)}
             >
-              {/* Image Container */}
-              <div className="relative overflow-hidden aspect-[4/3]">
-              <img
-                src={item.src}
-                alt={`${item.title} — graphic design portfolio piece`}
-                loading="lazy"
-                  className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
-                />
-                
-                {/* Enhanced Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                
-                {/* Featured Badge */}
-                {item.featured && (
-                  <div className="absolute top-3 left-3">
-                    <span className="inline-flex items-center gap-1 px-2 py-1 rounded-full text-xs font-medium bg-yellow-500/90 text-yellow-900 border border-yellow-600/20">
-                      <Star className="h-3 w-3 fill-current" />
-                      Featured
-                    </span>
-                  </div>
-                )}
-                
-                {/* Category Badge */}
-                <div className="absolute top-3 right-3">
-                  <span className="inline-flex items-center px-2 py-1 sm:px-3 sm:py-1 rounded-full text-xs font-medium bg-background/90 backdrop-blur-sm text-foreground border border-border/20">
-                    {item.category}
-                  </span>
+              {/* Featured Badge */}
+              {item.featured && (
+                <div className="absolute top-4 left-4 z-10 bg-gradient-to-r from-brand-green to-brand-olive text-white px-3 py-1 rounded-full text-xs font-medium flex items-center gap-1">
+                  <Star className="h-3 w-3" />
+                  Featured
                 </div>
+              )}
 
-                {/* View Detail Button */}
-                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500 p-4">
-                  <Button 
-                    asChild 
-                    size="lg" 
-                    className="bg-white/90 hover:bg-white text-foreground border-0 shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-110 w-full sm:w-auto group/btn"
-                  >
-                    <a href={`/portfolio/${item.id}`} className="flex items-center justify-center gap-2">
-                      <Eye className="h-4 w-4 transition-transform group-hover/btn:scale-110" />
-                      <span className="hidden sm:inline">View Details</span>
-                      <span className="sm:hidden">View</span>
-                    </a>
-                  </Button>
-                </div>
+              {/* Image */}
+              <div className="relative h-64 md:h-72 overflow-hidden">
+                <img
+                  src={item.image}
+                  alt={item.title}
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-brand-forest/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               </div>
 
               {/* Content */}
-              <div className="p-4 sm:p-6">
-                <div className="flex items-start justify-between mb-2 sm:mb-3">
-                  <h3 className="text-base sm:text-lg font-semibold text-foreground group-hover:text-secondary transition-colors duration-300 leading-tight">
-                    {item.title}
-                  </h3>
-                  <ArrowUpRight className="h-4 w-4 sm:h-5 sm:w-5 text-muted-foreground group-hover:text-secondary transition-all duration-300 group-hover:translate-x-1 group-hover:-translate-y-1 flex-shrink-0 ml-2" />
+              <div className="p-6">
+                {/* Category Badge */}
+                <div className="inline-block bg-brand-olive/10 text-brand-forest px-3 py-1 rounded-full text-sm font-medium mb-3">
+                  {item.category}
                 </div>
-                
-                <p className="text-xs sm:text-sm text-muted-foreground mb-3 sm:mb-4 leading-relaxed line-clamp-2">
-                  {item.description}
-                </p>
 
-                {/* Enhanced Meta Information */}
-                <div className="grid grid-cols-2 gap-2 mb-3 sm:mb-4">
-                  <div className="flex items-center gap-1 text-xs text-muted-foreground">
-                    <Calendar className="h-3 w-3" />
-                    <span>{item.year}</span>
-                  </div>
-                  <div className="flex items-center gap-1 text-xs text-muted-foreground">
-                    <Clock className="h-3 w-3" />
+                {/* Title */}
+                <h3 className="text-xl font-bold text-brand-forest mb-3 group-hover:text-brand-green transition-colors duration-300">
+                  {item.title}
+                </h3>
+
+                {/* Meta Information */}
+                <div className="flex items-center gap-4 text-sm text-brand-forest/70 mb-4">
+                  <div className="flex items-center gap-1">
+                    <Clock className="h-4 w-4" />
                     <span>{item.duration}</span>
                   </div>
+                  <div className="flex items-center gap-1">
+                    <Users className="h-4 w-4" />
+                    <span>{item.team}</span>
+                  </div>
                 </div>
 
-                {/* Team Info */}
-                <div className="flex items-center gap-1 text-xs text-muted-foreground mb-3 sm:mb-4">
-                  <Users className="h-3 w-3" />
-                  <span>{item.team}</span>
-                </div>
-
-                {/* Tags */}
-                <div className="flex flex-wrap gap-1 sm:gap-2">
-                  {item.tags.slice(0, 2).map((tag, index) => (
-                    <span 
-                      key={index}
-                      className="inline-flex items-center px-2 py-1 rounded-md text-xs font-medium bg-secondary/10 text-secondary border border-secondary/20"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                  {item.tags.length > 2 && (
-                    <span className="inline-flex items-center px-2 py-1 rounded-md text-xs font-medium bg-muted text-muted-foreground border border-border">
-                      +{item.tags.length - 2}
-                    </span>
+                {/* Awards & Stats */}
+                <div className="space-y-2 mb-4">
+                  {item.awards && (
+                    <div className="flex items-center gap-2 text-sm text-brand-green">
+                      <Award className="h-4 w-4" />
+                      <span>{item.awards}</span>
+                    </div>
+                  )}
+                  {item.stats && (
+                    <div className="text-sm text-brand-forest/80 font-medium">
+                      {item.stats}
+                    </div>
                   )}
                 </div>
-              </div>
 
-              {/* Enhanced Hover Effect Border */}
-              <div className={cn(
-                "absolute inset-0 rounded-xl sm:rounded-2xl border-2 border-transparent transition-all duration-500",
-                hoveredId === item.id ? "border-secondary/50" : ""
-              )} />
+                {/* Hover Effect */}
+                <div className="absolute inset-0 bg-gradient-to-t from-brand-green/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl" />
+              </div>
             </article>
           ))}
         </div>
 
-        {/* Enhanced View All Button */}
-        <div className={cn(
-          "text-center mt-12 md:mt-16 transition-all duration-700 delay-500",
-          isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-        )}>
-          <Button 
-            asChild 
-            variant="outline" 
-            size="lg" 
-            className="border-2 border-border hover:border-secondary hover:bg-secondary/5 transition-all duration-300 hover:scale-105 w-full sm:w-auto px-6 py-4 md:px-8 md:py-6 text-base md:text-lg font-semibold group"
-          >
-            <a href="/portfolio" className="flex items-center justify-center gap-2">
+        {/* View All Button */}
+        <div className={cn("text-center transition-all duration-700 delay-500", isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8")}>
+          <Button asChild size="lg" className="bg-gradient-to-r from-brand-green to-brand-olive hover:from-brand-green/90 hover:to-brand-olive/90 text-white shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 px-8 py-6 text-lg font-semibold">
+            <a href="/portfolio" className="flex items-center gap-2">
               View All Projects
-              <ArrowUpRight className="h-4 w-4 md:h-5 md:w-5 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
+              <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
             </a>
           </Button>
         </div>
