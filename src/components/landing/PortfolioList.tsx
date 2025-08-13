@@ -1,4 +1,4 @@
-import { useState, useMemo, useEffect } from "react";
+import { useState, useMemo, useEffect, useRef } from "react";
 import { Search, Filter, Grid3X3, List, ArrowUpRight, Eye, Calendar, Tag, Star, Clock, Users, Award } from "lucide-react";
 import { cn } from "@/lib/utils";
 import portfolio01 from "@/assets/portfolio-01.jpg";
@@ -299,9 +299,23 @@ const PortfolioList = () => {
 };
 
 const PortfolioCard = ({ item, viewMode, delay }: { item: PortfolioItem; viewMode: "grid" | "list"; delay: number }) => {
+  const cardRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    if (cardRef.current) {
+      setTimeout(() => {
+        if (cardRef.current) {
+          cardRef.current.style.opacity = "1";
+          cardRef.current.style.transform = "translateY(0)";
+        }
+      }, delay);
+    }
+  }, [delay]);
+
   if (viewMode === "grid") {
     return (
       <article
+        ref={cardRef}
         className={cn(
           "group relative overflow-hidden rounded-xl md:rounded-2xl border border-brand-forest/20 bg-white/80 backdrop-blur-sm hover:border-brand-green/30 transition-all duration-500 hover:shadow-xl hover:scale-[1.02]",
           "transition-all duration-700"
@@ -311,12 +325,6 @@ const PortfolioCard = ({ item, viewMode, delay }: { item: PortfolioItem; viewMod
           opacity: 0,
           transform: "translateY(20px)",
           transition: "opacity 0.6s ease-out, transform 0.6s ease-out"
-        }}
-        onLoad={(e) => {
-          setTimeout(() => {
-            e.currentTarget.style.opacity = "1";
-            e.currentTarget.style.transform = "translateY(0)";
-          }, delay);
         }}
       >
         {/* Featured Badge */}
@@ -414,6 +422,7 @@ const PortfolioCard = ({ item, viewMode, delay }: { item: PortfolioItem; viewMod
   // List View
   return (
     <article
+      ref={cardRef}
       className={cn(
         "group relative overflow-hidden rounded-xl md:rounded-2xl border border-brand-forest/20 bg-white/80 backdrop-blur-sm transition-all duration-500 hover:scale-[1.02] hover:shadow-xl hover:border-brand-green/30",
         "transition-all duration-700"
@@ -423,12 +432,6 @@ const PortfolioCard = ({ item, viewMode, delay }: { item: PortfolioItem; viewMod
         opacity: 0,
         transform: "translateY(20px)",
         transition: "opacity 0.6s ease-out, transform 0.6s ease-out"
-      }}
-      onLoad={(e) => {
-        setTimeout(() => {
-          e.currentTarget.style.opacity = "1";
-          e.currentTarget.style.transform = "translateY(0)";
-        }, delay);
       }}
     >
       <div className="flex flex-col sm:flex-row">
