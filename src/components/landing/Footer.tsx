@@ -20,8 +20,15 @@ const Footer = () => {
           {/* Brand Section */}
           <div className="lg:col-span-2">
             <div className="flex items-center gap-2 md:gap-3 mb-4 md:mb-6">
-              <div className="h-8 w-8 md:h-10 md:w-10 rounded-lg" style={{ background: "var(--gradient-hero)" }} />
-              <span className="text-xl md:text-2xl font-bold tracking-tight">Your Brand</span>
+              {/* Logo */}
+              <div className="h-8 w-8 md:h-10 md:w-10 transition-all duration-300">
+                <img 
+                  src="/assets/AM_LW.png" 
+                  alt="Muwahhid Logo" 
+                  className="w-full h-full object-contain"
+                />
+              </div>
+              <span className="text-xl md:text-2xl font-bold tracking-tight">Muwahhid</span>
             </div>
             <p className="text-muted-foreground mb-4 md:mb-6 max-w-md leading-relaxed text-sm md:text-base">
               Crafting bold, modern visuals that help brands stand out. 
@@ -77,9 +84,9 @@ const Footer = () => {
                   {service}
                 </span>
               ))}
-            </nav>
-          </div>
+          </nav>
         </div>
+      </div>
 
         {/* Contact & Social */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 mb-8 md:mb-12 pt-6 md:pt-8 border-t border-sidebar-border/30">
@@ -89,8 +96,8 @@ const Footer = () => {
             <div className="space-y-2 md:space-y-3">
               <div className="flex items-center gap-2 md:gap-3 text-muted-foreground text-sm md:text-base">
                 <Mail className="h-4 w-4 text-sidebar-primary" />
-                <a href="mailto:hello@yourbrand.design" className="hover:text-sidebar-primary transition-colors duration-300">
-                  hello@yourbrand.design
+                <a href="mailto:hello@muwahhid.design" className="hover:text-sidebar-primary transition-colors duration-300">
+                  hello@muwahhid.design
                 </a>
               </div>
               <div className="flex items-center gap-2 md:gap-3 text-muted-foreground text-sm md:text-base">
@@ -148,7 +155,7 @@ const Footer = () => {
         {/* Bottom Bar */}
         <div className="flex flex-col md:flex-row items-center justify-between gap-4 pt-6 md:pt-8 border-t border-sidebar-border/30">
           <div className="flex flex-col sm:flex-row items-center gap-2 sm:gap-6 text-xs md:text-sm text-muted-foreground text-center sm:text-left">
-            <p>© {new Date().getFullYear()} Your Brand — Graphic Designer</p>
+            <p>© {new Date().getFullYear()} Muwahhid — Graphic Designer</p>
             <span className="hidden sm:inline">•</span>
             <span className="hidden sm:inline">All rights reserved</span>
           </div>

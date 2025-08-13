@@ -116,9 +116,9 @@ const PortfolioGrid = () => {
             className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-foreground mb-4 md:mb-6"
           >
             <span className="bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text text-transparent">
-              Selected Work
+          Selected Work
             </span>
-          </h2>
+        </h2>
           <p className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed px-4 sm:px-0">
             A curated collection of recent projects showcasing strategic design thinking, 
             technical expertise, and creative innovation across various mediums.
@@ -141,10 +141,10 @@ const PortfolioGrid = () => {
             >
               {/* Image Container */}
               <div className="relative overflow-hidden aspect-[4/3]">
-                <img
-                  src={item.src}
-                  alt={`${item.title} — graphic design portfolio piece`}
-                  loading="lazy"
+              <img
+                src={item.src}
+                alt={`${item.title} — graphic design portfolio piece`}
+                loading="lazy"
                   className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
                 />
                 

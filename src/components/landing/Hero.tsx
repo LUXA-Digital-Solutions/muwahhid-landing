@@ -41,6 +41,21 @@ const Hero = () => {
 
       <div className="container relative z-10 px-4 sm:px-6">
         <div className="mx-auto max-w-4xl text-center">
+          {/* Logo Badge */}
+          <div className={cn(
+            "inline-flex items-center gap-2 mb-6 md:mb-8 transition-all duration-700 delay-200",
+            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+          )}>
+            {/* <div className="h-6 w-6 md:h-8 md:w-8 text-foreground/60">
+              <img 
+                src="/assets/AM_LW.png" 
+                alt="Muwahhid Logo" 
+                className="w-full h-full object-contain"
+              />
+            </div>
+            <span className="text-sm md:text-base font-medium text-foreground/60 tracking-wide">MUWAHHID</span> */}
+          </div>
+
           {/* Badge */}
           <div className={cn(
             "inline-flex items-center gap-2 rounded-full border border-border/20 bg-background/10 backdrop-blur-sm px-4 py-2 md:px-6 md:py-3 text-xs md:text-sm tracking-wide text-muted-foreground mb-6 md:mb-8",

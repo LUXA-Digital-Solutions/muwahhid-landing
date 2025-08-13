@@ -37,15 +37,17 @@ const Navbar = () => {
           className="inline-flex items-center gap-2 md:gap-3 font-bold tracking-tight text-xl md:text-2xl group"
           onClick={closeMobileMenu}
         >
-          <div className="relative">
-            <div 
-              className="h-6 w-6 md:h-8 md:w-8 rounded-lg transition-all duration-300 group-hover:scale-110" 
-              style={{ background: "var(--gradient-hero)" }}
+          {/* Logo */}
+          <div className="relative h-8 w-8 md:h-10 md:w-10 transition-all duration-300 group-hover:scale-110">
+            <img 
+              src="/assets/AM_LW.png" 
+              alt="Muwahhid Logo" 
+              className="w-full h-full object-contain"
             />
-            <div className="absolute inset-0 rounded-lg bg-gradient-to-r from-secondary to-primary opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
           </div>
+          
           <span className="bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text text-transparent">
-            Your Brand
+            Muwahhid
           </span>
         </a>
         
