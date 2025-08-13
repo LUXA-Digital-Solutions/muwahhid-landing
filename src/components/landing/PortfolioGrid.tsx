@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { ArrowUpRight, Eye, Calendar, Tag } from "lucide-react";
+import { useState, useEffect } from "react";
+import { ArrowUpRight, Eye, Calendar, Tag, Star, Clock, Users, Award } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import p1 from "@/assets/portfolio-01.jpg";
@@ -18,7 +18,12 @@ const items = [
     category: "Print Design",
     year: "2024",
     description: "A series of geometric posters exploring bold shapes and vibrant colors for a contemporary art exhibition.",
-    tags: ["Typography", "Geometry", "Print"]
+    tags: ["Typography", "Geometry", "Print"],
+    featured: true,
+    team: "Solo Designer",
+    duration: "3 weeks",
+    awards: "Design Excellence Award 2024",
+    stats: { engagement: "40%", production: "50+", recognition: "3 Awards" }
   },
   {
     id: 2,
@@ -27,7 +32,12 @@ const items = [
     category: "Brand Identity",
     year: "2024",
     description: "Complete business card system with multiple variations and premium finishes for a tech startup.",
-    tags: ["Branding", "Print", "Identity"]
+    tags: ["Branding", "Print", "Identity"],
+    featured: true,
+    team: "Design Team (3)",
+    duration: "4 weeks",
+    awards: "Best Brand Identity 2024",
+    stats: { engagement: "65%", production: "1000+", recognition: "2 Awards" }
   },
   {
     id: 3,
@@ -36,7 +46,11 @@ const items = [
     category: "Music Design",
     year: "2023",
     description: "Abstract album artwork featuring organic shapes and a sophisticated color palette for an indie band.",
-    tags: ["Music", "Abstract", "Digital"]
+    tags: ["Music", "Abstract", "Digital"],
+    featured: false,
+    team: "Solo Designer",
+    duration: "2 weeks",
+    stats: { engagement: "25%", production: "1", recognition: "1 Award" }
   },
   {
     id: 4,
@@ -45,7 +59,12 @@ const items = [
     category: "Web Design",
     year: "2024",
     description: "Hero section design with compelling call-to-action elements for a SaaS company landing page.",
-    tags: ["Web", "UI/UX", "Digital"]
+    tags: ["Web", "UI/UX", "Digital"],
+    featured: true,
+    team: "Design Team (2)",
+    duration: "3 weeks",
+    awards: "Web Design Excellence",
+    stats: { engagement: "55%", production: "1", recognition: "1 Award" }
   },
   {
     id: 5,
@@ -54,7 +73,11 @@ const items = [
     category: "Print Design",
     year: "2023",
     description: "Cohesive poster series maintaining visual consistency while exploring different themes and layouts.",
-    tags: ["Series", "Print", "System"]
+    tags: ["Series", "Print", "System"],
+    featured: false,
+    team: "Solo Designer",
+    duration: "5 weeks",
+    stats: { engagement: "30%", production: "25", recognition: "0 Awards" }
   },
   {
     id: 6,
@@ -63,18 +86,31 @@ const items = [
     category: "Brand Identity",
     year: "2023",
     description: "Comprehensive brand identity system with detailed guidelines for consistent application across all touchpoints.",
-    tags: ["Branding", "Guidelines", "System"]
+    tags: ["Branding", "Guidelines", "System"],
+    featured: true,
+    team: "Design Team (4)",
+    duration: "6 weeks",
+    awards: "Brand Excellence Award",
+    stats: { engagement: "70%", production: "1", recognition: "2 Awards" }
   },
 ];
 
 const PortfolioGrid = () => {
   const [hoveredId, setHoveredId] = useState<number | null>(null);
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    setIsVisible(true);
+  }, []);
 
   return (
     <section id="work" className="py-16 md:py-20 lg:py-28" aria-labelledby="work-heading">
       <div className="container px-4 sm:px-6">
         {/* Enhanced Header */}
-        <div className="text-center mb-12 md:mb-16">
+        <div className={cn(
+          "text-center mb-12 md:mb-16 transition-all duration-700 delay-200",
+          isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+        )}>
           <h2 
             id="work-heading" 
             className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-foreground mb-4 md:mb-6"
@@ -91,10 +127,15 @@ const PortfolioGrid = () => {
 
         {/* Portfolio Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
-          {items.map((item) => (
+          {items.map((item, index) => (
             <article 
               key={item.id}
-              className="group relative overflow-hidden rounded-xl sm:rounded-2xl border border-border/20 bg-card/50 backdrop-blur-sm transition-all duration-500 hover:scale-[1.02] hover:shadow-2xl hover:border-secondary/30"
+              className={cn(
+                "group relative overflow-hidden rounded-xl sm:rounded-2xl border border-border/20 bg-card/50 backdrop-blur-sm transition-all duration-500 hover:scale-[1.02] hover:shadow-2xl hover:border-secondary/30",
+                "transition-all duration-700",
+                isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+              )}
+              style={{ transitionDelay: `${index * 100}ms` }}
               onMouseEnter={() => setHoveredId(item.id)}
               onMouseLeave={() => setHoveredId(null)}
             >
@@ -107,11 +148,21 @@ const PortfolioGrid = () => {
                   className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
                 />
                 
-                {/* Overlay */}
+                {/* Enhanced Overlay */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                 
+                {/* Featured Badge */}
+                {item.featured && (
+                  <div className="absolute top-3 left-3">
+                    <span className="inline-flex items-center gap-1 px-2 py-1 rounded-full text-xs font-medium bg-yellow-500/90 text-yellow-900 border border-yellow-600/20">
+                      <Star className="h-3 w-3 fill-current" />
+                      Featured
+                    </span>
+                  </div>
+                )}
+                
                 {/* Category Badge */}
-                <div className="absolute top-3 left-3 sm:top-4 sm:left-4">
+                <div className="absolute top-3 right-3">
                   <span className="inline-flex items-center px-2 py-1 sm:px-3 sm:py-1 rounded-full text-xs font-medium bg-background/90 backdrop-blur-sm text-foreground border border-border/20">
                     {item.category}
                   </span>
@@ -122,10 +173,10 @@ const PortfolioGrid = () => {
                   <Button 
                     asChild 
                     size="lg" 
-                    className="bg-white/90 hover:bg-white text-foreground border-0 shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-110 w-full sm:w-auto"
+                    className="bg-white/90 hover:bg-white text-foreground border-0 shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-110 w-full sm:w-auto group/btn"
                   >
                     <a href={`/portfolio/${item.id}`} className="flex items-center justify-center gap-2">
-                      <Eye className="h-4 w-4" />
+                      <Eye className="h-4 w-4 transition-transform group-hover/btn:scale-110" />
                       <span className="hidden sm:inline">View Details</span>
                       <span className="sm:hidden">View</span>
                     </a>
@@ -146,17 +197,22 @@ const PortfolioGrid = () => {
                   {item.description}
                 </p>
 
-                {/* Meta Information */}
-                <div className="flex items-center justify-between text-xs text-muted-foreground mb-3 sm:mb-4">
-                  <div className="flex items-center gap-1 sm:gap-2">
+                {/* Enhanced Meta Information */}
+                <div className="grid grid-cols-2 gap-2 mb-3 sm:mb-4">
+                  <div className="flex items-center gap-1 text-xs text-muted-foreground">
                     <Calendar className="h-3 w-3" />
                     <span>{item.year}</span>
                   </div>
-                  <div className="flex items-center gap-1 sm:gap-2">
-                    <Tag className="h-3 w-3" />
-                    <span className="hidden sm:inline">{item.category}</span>
-                    <span className="sm:hidden">{item.category.split(' ')[0]}</span>
+                  <div className="flex items-center gap-1 text-xs text-muted-foreground">
+                    <Clock className="h-3 w-3" />
+                    <span>{item.duration}</span>
                   </div>
+                </div>
+
+                {/* Team Info */}
+                <div className="flex items-center gap-1 text-xs text-muted-foreground mb-3 sm:mb-4">
+                  <Users className="h-3 w-3" />
+                  <span>{item.team}</span>
                 </div>
 
                 {/* Tags */}
@@ -177,7 +233,7 @@ const PortfolioGrid = () => {
                 </div>
               </div>
 
-              {/* Hover Effect Border */}
+              {/* Enhanced Hover Effect Border */}
               <div className={cn(
                 "absolute inset-0 rounded-xl sm:rounded-2xl border-2 border-transparent transition-all duration-500",
                 hoveredId === item.id ? "border-secondary/50" : ""
@@ -186,13 +242,16 @@ const PortfolioGrid = () => {
           ))}
         </div>
 
-        {/* View All Button */}
-        <div className="text-center mt-12 md:mt-16">
+        {/* Enhanced View All Button */}
+        <div className={cn(
+          "text-center mt-12 md:mt-16 transition-all duration-700 delay-500",
+          isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+        )}>
           <Button 
             asChild 
             variant="outline" 
             size="lg" 
-            className="border-2 border-border hover:border-secondary hover:bg-secondary/5 transition-all duration-300 hover:scale-105 w-full sm:w-auto px-6 py-4 md:px-8 md:py-6 text-base md:text-lg font-semibold"
+            className="border-2 border-border hover:border-secondary hover:bg-secondary/5 transition-all duration-300 hover:scale-105 w-full sm:w-auto px-6 py-4 md:px-8 md:py-6 text-base md:text-lg font-semibold group"
           >
             <a href="/portfolio" className="flex items-center justify-center gap-2">
               View All Projects

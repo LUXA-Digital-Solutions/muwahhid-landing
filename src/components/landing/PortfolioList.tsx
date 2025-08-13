@@ -1,5 +1,5 @@
-import { useState, useMemo } from "react";
-import { Search, Filter, Grid3X3, List, ArrowUpRight, Eye, Calendar, Tag } from "lucide-react";
+import { useState, useMemo, useEffect } from "react";
+import { Search, Filter, Grid3X3, List, ArrowUpRight, Eye, Calendar, Tag, Star, Clock, Users, Award } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
@@ -21,6 +21,14 @@ interface PortfolioItem {
   tags: string[];
   image: string;
   featured: boolean;
+  team: string;
+  duration: string;
+  awards?: string;
+  stats: {
+    engagement: string;
+    production: string;
+    recognition: string;
+  };
 }
 
 // Enhanced portfolio data
@@ -34,7 +42,11 @@ const portfolioItems: PortfolioItem[] = [
     description: "A series of geometric posters exploring bold shapes and vibrant colors for a contemporary art exhibition.",
     tags: ["Typography", "Geometry", "Print", "Exhibition"],
     image: p1,
-    featured: true
+    featured: true,
+    team: "Solo Designer",
+    duration: "3 weeks",
+    awards: "Design Excellence Award 2024",
+    stats: { engagement: "40%", production: "50+", recognition: "3 Awards" }
   },
   {
     id: 2,
@@ -45,7 +57,11 @@ const portfolioItems: PortfolioItem[] = [
     description: "Complete business card system with multiple variations and premium finishes for a tech startup.",
     tags: ["Branding", "Print", "Identity", "Business Cards"],
     image: p2,
-    featured: true
+    featured: true,
+    team: "Design Team (3)",
+    duration: "4 weeks",
+    awards: "Best Brand Identity 2024",
+    stats: { engagement: "65%", production: "1000+", recognition: "2 Awards" }
   },
   {
     id: 3,
@@ -56,7 +72,10 @@ const portfolioItems: PortfolioItem[] = [
     description: "Abstract album artwork featuring organic shapes and a sophisticated color palette for an indie band.",
     tags: ["Music", "Abstract", "Digital", "Album Art"],
     image: p3,
-    featured: false
+    featured: false,
+    team: "Solo Designer",
+    duration: "2 weeks",
+    stats: { engagement: "25%", production: "1", recognition: "1 Award" }
   },
   {
     id: 4,
@@ -67,7 +86,11 @@ const portfolioItems: PortfolioItem[] = [
     description: "Hero section design with compelling call-to-action elements for a SaaS company landing page.",
     tags: ["Web", "UI/UX", "Digital", "Landing Page"],
     image: p4,
-    featured: true
+    featured: true,
+    team: "Design Team (2)",
+    duration: "3 weeks",
+    awards: "Web Design Excellence",
+    stats: { engagement: "55%", production: "1", recognition: "1 Award" }
   },
   {
     id: 5,
@@ -78,7 +101,10 @@ const portfolioItems: PortfolioItem[] = [
     description: "Cohesive poster series maintaining visual consistency while exploring different themes and layouts.",
     tags: ["Series", "Print", "System", "Festival"],
     image: p5,
-    featured: false
+    featured: false,
+    team: "Solo Designer",
+    duration: "5 weeks",
+    stats: { engagement: "30%", production: "25", recognition: "0 Awards" }
   },
   {
     id: 6,
@@ -89,7 +115,11 @@ const portfolioItems: PortfolioItem[] = [
     description: "Comprehensive brand identity system with detailed guidelines for consistent application across all touchpoints.",
     tags: ["Branding", "Guidelines", "System", "Corporate"],
     image: p6,
-    featured: true
+    featured: true,
+    team: "Design Team (4)",
+    duration: "6 weeks",
+    awards: "Brand Excellence Award",
+    stats: { engagement: "70%", production: "1", recognition: "2 Awards" }
   },
   {
     id: 7,
@@ -100,7 +130,10 @@ const portfolioItems: PortfolioItem[] = [
     description: "Sustainable packaging design that balances environmental responsibility with visual appeal and functionality.",
     tags: ["Packaging", "Product", "Sustainable", "Eco-friendly"],
     image: p1,
-    featured: false
+    featured: false,
+    team: "Design Team (2)",
+    duration: "4 weeks",
+    stats: { engagement: "45%", production: "500+", recognition: "1 Award" }
   },
   {
     id: 8,
@@ -111,7 +144,10 @@ const portfolioItems: PortfolioItem[] = [
     description: "Comprehensive social media campaign with consistent visual language across multiple platforms.",
     tags: ["Social Media", "Campaign", "Digital", "Fashion"],
     image: p2,
-    featured: false
+    featured: false,
+    team: "Design Team (3)",
+    duration: "3 weeks",
+    stats: { engagement: "60%", production: "15", recognition: "0 Awards" }
   }
 ];
 
@@ -124,6 +160,11 @@ const PortfolioList = () => {
   const [selectedYear, setSelectedYear] = useState("All");
   const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
   const [showFilters, setShowFilters] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    setIsVisible(true);
+  }, []);
 
   // Filter and search logic
   const filteredItems = useMemo(() => {
@@ -144,10 +185,19 @@ const PortfolioList = () => {
 
   return (
     <div className="min-h-screen bg-background pt-16 md:pt-20">
-      {/* Header */}
-      <div className="bg-gradient-to-b from-background to-muted/20 border-b border-border">
-        <div className="container py-12 md:py-16 px-4 sm:px-6">
-          <div className="text-center mb-8 md:mb-12">
+      {/* Enhanced Header with Background Elements */}
+      <div className="relative bg-gradient-to-b from-background via-background/95 to-muted/20 border-b border-border overflow-hidden">
+        {/* Animated Background Elements */}
+        <div className="absolute inset-0 -z-10">
+          <div className="absolute top-20 left-10 w-64 h-64 md:w-96 md:h-96 bg-secondary/10 rounded-full blur-3xl animate-pulse" />
+          <div className="absolute bottom-20 right-10 w-80 h-80 md:w-[500px] md:h-[500px] bg-primary/10 rounded-full blur-3xl animate-pulse delay-1000" />
+        </div>
+
+        <div className="container py-12 md:py-16 px-4 sm:px-6 relative z-10">
+          <div className={cn(
+            "text-center mb-8 md:mb-12 transition-all duration-700 delay-200",
+            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+          )}>
             <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-tight text-foreground mb-4 md:mb-6">
               <span className="bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text text-transparent">
                 Portfolio
@@ -159,17 +209,20 @@ const PortfolioList = () => {
             </p>
           </div>
 
-          {/* Search and Filters */}
-          <div className="max-w-4xl mx-auto space-y-4 md:space-y-6">
+          {/* Enhanced Search and Filters */}
+          <div className={cn(
+            "max-w-4xl mx-auto space-y-4 md:space-y-6 transition-all duration-700 delay-400",
+            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+          )}>
             {/* Search Bar */}
-            <div className="relative">
-              <Search className="absolute left-3 md:left-4 top-1/2 transform -translate-y-1/2 h-4 w-4 md:h-5 md:w-5 text-muted-foreground" />
+            <div className="relative group">
+              <Search className="absolute left-3 md:left-4 top-1/2 transform -translate-y-1/2 h-4 w-4 md:h-5 md:w-5 text-muted-foreground transition-colors group-focus-within:text-secondary" />
               <Input
                 type="text"
                 placeholder="Search projects, tags, or descriptions..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="pl-10 md:pl-12 pr-4 py-4 md:py-6 text-base md:text-lg border-2 border-border/20 focus:border-secondary transition-colors duration-300"
+                className="pl-10 md:pl-12 pr-4 py-4 md:py-6 text-base md:text-lg border-2 border-border/20 focus:border-secondary transition-all duration-300 bg-background/50 backdrop-blur-sm"
               />
             </div>
 
@@ -179,9 +232,9 @@ const PortfolioList = () => {
                 <Button
                   variant="outline"
                   onClick={() => setShowFilters(!showFilters)}
-                  className="flex items-center gap-2 border-2 border-border hover:border-secondary w-full sm:w-auto justify-center"
+                  className="flex items-center gap-2 border-2 border-border hover:border-secondary transition-all duration-300 w-full sm:w-auto justify-center group"
                 >
-                  <Filter className="h-4 w-4" />
+                  <Filter className="h-4 w-4 transition-transform group-hover:rotate-180" />
                   Filters
                 </Button>
                 
@@ -190,7 +243,7 @@ const PortfolioList = () => {
                     <select
                       value={selectedCategory}
                       onChange={(e) => setSelectedCategory(e.target.value)}
-                      className="w-full sm:w-auto px-3 py-2 rounded-lg border border-border bg-background text-foreground focus:border-secondary transition-colors duration-300 text-sm md:text-base"
+                      className="w-full sm:w-auto px-3 py-2 rounded-lg border border-border bg-background/50 backdrop-blur-sm text-foreground focus:border-secondary transition-colors duration-300 text-sm md:text-base"
                     >
                       {categories.map(category => (
                         <option key={category} value={category}>{category}</option>
@@ -200,7 +253,7 @@ const PortfolioList = () => {
                     <select
                       value={selectedYear}
                       onChange={(e) => setSelectedYear(e.target.value)}
-                      className="w-full sm:w-auto px-3 py-2 rounded-lg border border-border bg-background text-foreground focus:border-secondary transition-colors duration-300 text-sm md:text-base"
+                      className="w-full sm:w-auto px-3 py-2 rounded-lg border border-border bg-background/50 backdrop-blur-sm text-foreground focus:border-secondary transition-colors duration-300 text-sm md:text-base"
                     >
                       {years.map(year => (
                         <option key={year} value={year}>{year}</option>
@@ -210,12 +263,12 @@ const PortfolioList = () => {
                 )}
               </div>
 
-              <div className="flex items-center gap-2 border border-border rounded-lg p-1 w-full sm:w-auto justify-center">
+              <div className="flex items-center gap-2 border border-border rounded-lg p-1 w-full sm:w-auto justify-center bg-background/50 backdrop-blur-sm">
                 <Button
                   variant={viewMode === "grid" ? "default" : "ghost"}
                   size="sm"
                   onClick={() => setViewMode("grid")}
-                  className="h-8 w-8 p-0"
+                  className="h-8 w-8 p-0 transition-all duration-300"
                 >
                   <Grid3X3 className="h-4 w-4" />
                 </Button>
@@ -223,7 +276,7 @@ const PortfolioList = () => {
                   variant={viewMode === "list" ? "default" : "ghost"}
                   size="sm"
                   onClick={() => setViewMode("list")}
-                  className="h-8 w-8 p-0"
+                  className="h-8 w-8 p-0 transition-all duration-300"
                 >
                   <List className="h-4 w-4" />
                 </Button>
@@ -244,8 +297,13 @@ const PortfolioList = () => {
           <div className="container px-4 sm:px-6">
             <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-6 md:mb-8 text-center">Featured Projects</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
-              {featuredItems.map((item) => (
-                <PortfolioCard key={item.id} item={item} viewMode={viewMode} />
+              {featuredItems.map((item, index) => (
+                <PortfolioCard 
+                  key={item.id} 
+                  item={item} 
+                  viewMode={viewMode} 
+                  delay={index * 100}
+                />
               ))}
             </div>
           </div>
@@ -259,14 +317,24 @@ const PortfolioList = () => {
           
           {viewMode === "grid" ? (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
-              {regularItems.map((item) => (
-                <PortfolioCard key={item.id} item={item} viewMode={viewMode} />
+              {regularItems.map((item, index) => (
+                <PortfolioCard 
+                  key={item.id} 
+                  item={item} 
+                  viewMode={viewMode} 
+                  delay={index * 100}
+                />
               ))}
             </div>
           ) : (
             <div className="space-y-4 md:space-y-6">
-              {regularItems.map((item) => (
-                <PortfolioCard key={item.id} item={item} viewMode={viewMode} />
+              {regularItems.map((item, index) => (
+                <PortfolioCard 
+                  key={item.id} 
+                  item={item} 
+                  viewMode={viewMode} 
+                  delay={index * 100}
+                />
               ))}
             </div>
           )}
@@ -300,16 +368,27 @@ const PortfolioList = () => {
   );
 };
 
-// Portfolio Card Component
-const PortfolioCard = ({ item, viewMode }: { item: PortfolioItem; viewMode: "grid" | "list" }) => {
+// Enhanced Portfolio Card Component
+const PortfolioCard = ({ item, viewMode, delay = 0 }: { item: PortfolioItem; viewMode: "grid" | "list"; delay?: number }) => {
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setIsVisible(true), delay);
+    return () => clearTimeout(timer);
+  }, [delay]);
+
   if (viewMode === "list") {
     return (
-      <article className="group flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6 p-4 md:p-6 rounded-xl md:rounded-2xl border border-border/20 bg-card/50 backdrop-blur-sm hover:border-secondary/30 transition-all duration-300 hover:shadow-lg">
-        <div className="flex-shrink-0 w-full sm:w-32 h-24 sm:h-24 overflow-hidden rounded-lg">
+      <article className={cn(
+        "group flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6 p-4 md:p-6 rounded-xl md:rounded-2xl border border-border/20 bg-card/50 backdrop-blur-sm hover:border-secondary/30 transition-all duration-500 hover:shadow-xl hover:scale-[1.02]",
+        "transition-all duration-700",
+        isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+      )}>
+        <div className="flex-shrink-0 w-full sm:w-32 h-24 sm:h-24 overflow-hidden rounded-lg group-hover:scale-105 transition-transform duration-500">
           <img
             src={item.image}
             alt={item.title}
-            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+            className="w-full h-full object-cover"
           />
         </div>
         
@@ -332,12 +411,16 @@ const PortfolioCard = ({ item, viewMode }: { item: PortfolioItem; viewMode: "gri
               <Calendar className="h-3 w-3" />
               {item.year}
             </span>
+            <span className="inline-flex items-center gap-1">
+              <Users className="h-3 w-3" />
+              {item.team}
+            </span>
           </div>
         </div>
         
-        <Button asChild size="sm" className="flex-shrink-0 w-full sm:w-auto">
+        <Button asChild size="sm" className="flex-shrink-0 w-full sm:w-auto group/btn">
           <a href={`/portfolio/${item.id}`} className="flex items-center justify-center gap-2">
-            <Eye className="h-4 w-4" />
+            <Eye className="h-4 w-4 transition-transform group-hover/btn:scale-110" />
             View
           </a>
         </Button>
@@ -346,7 +429,11 @@ const PortfolioCard = ({ item, viewMode }: { item: PortfolioItem; viewMode: "gri
   }
 
   return (
-    <article className="group relative overflow-hidden rounded-xl md:rounded-2xl border border-border/20 bg-card/50 backdrop-blur-sm transition-all duration-500 hover:scale-[1.02] hover:shadow-2xl hover:border-secondary/30">
+    <article className={cn(
+      "group relative overflow-hidden rounded-xl md:rounded-2xl border border-border/20 bg-card/50 backdrop-blur-sm transition-all duration-500 hover:scale-[1.02] hover:shadow-2xl hover:border-secondary/30",
+      "transition-all duration-700",
+      isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+    )}>
       <div className="relative overflow-hidden aspect-[4/3]">
         <img
           src={item.image}
@@ -357,8 +444,18 @@ const PortfolioCard = ({ item, viewMode }: { item: PortfolioItem; viewMode: "gri
         
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
         
-        <div className="absolute top-3 left-3 sm:top-4 sm:left-4">
-          <span className="inline-flex items-center px-2 py-1 sm:px-3 sm:py-1 rounded-full text-xs font-medium bg-background/90 backdrop-blur-sm text-foreground border border-border/20">
+        {/* Featured Badge */}
+        {item.featured && (
+          <div className="absolute top-3 left-3">
+            <span className="inline-flex items-center gap-1 px-2 py-1 rounded-full text-xs font-medium bg-yellow-500/90 text-yellow-900 border border-yellow-600/20">
+              <Star className="h-3 w-3 fill-current" />
+              Featured
+            </span>
+          </div>
+        )}
+        
+        <div className="absolute top-3 right-3">
+          <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-background/90 backdrop-blur-sm text-foreground border border-border/20">
             {item.category}
           </span>
         </div>
@@ -390,18 +487,19 @@ const PortfolioCard = ({ item, viewMode }: { item: PortfolioItem; viewMode: "gri
           {item.description}
         </p>
 
-        <div className="flex items-center justify-between text-xs text-muted-foreground mb-3 sm:mb-4">
-          <div className="flex items-center gap-1 sm:gap-2">
+        {/* Project Meta */}
+        <div className="grid grid-cols-2 gap-2 mb-3 sm:mb-4">
+          <div className="flex items-center gap-1 text-xs text-muted-foreground">
             <Calendar className="h-3 w-3" />
             <span>{item.year}</span>
           </div>
-          <div className="flex items-center gap-1 sm:gap-2">
-            <Tag className="h-3 w-3" />
-            <span className="hidden sm:inline">{item.category}</span>
-            <span className="sm:hidden">{item.category.split(' ')[0]}</span>
+          <div className="flex items-center gap-1 text-xs text-muted-foreground">
+            <Clock className="h-3 w-3" />
+            <span>{item.duration}</span>
           </div>
         </div>
 
+        {/* Tags */}
         <div className="flex flex-wrap gap-1 sm:gap-2">
           {item.tags.slice(0, 2).map((tag: string, index: number) => (
             <span 
