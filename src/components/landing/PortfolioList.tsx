@@ -1,5 +1,18 @@
 import { useState, useMemo, useEffect, useRef } from "react";
-import { Search, Filter, Grid3X3, List, ArrowUpRight, Eye, Calendar, Tag, Star, Clock, Users, Award } from "lucide-react";
+import {
+  Search,
+  Filter,
+  Grid3X3,
+  List,
+  ArrowUpRight,
+  Eye,
+  Calendar,
+  Tag,
+  Star,
+  Clock,
+  Users,
+  Award,
+} from "lucide-react";
 import { cn } from "@/lib/utils";
 import portfolio01 from "@/assets/portfolio-01.jpg";
 import portfolio02 from "@/assets/portfolio-02.jpg";
@@ -32,126 +45,150 @@ const PortfolioList = () => {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    console.log('PortfolioList - Component mounted');
+    console.log("PortfolioList - Component mounted");
     setIsVisible(true);
   }, []);
 
-  const portfolioItems = useMemo(() => [
-    {
-      id: 1,
-      title: "Brand Identity System",
-      category: "Branding",
-      year: "2024",
-      description: "Complete brand identity system including logo, color palette, typography, and comprehensive guidelines for a tech startup.",
-      tags: ["Branding", "Identity", "Guidelines"],
-      featured: true,
-      team: "Solo Designer",
-      duration: "3 weeks",
-      awards: "Design Excellence Award 2024",
-      stats: "Brand recognition +40%",
-      image: portfolio01
-    },
-    {
-      id: 2,
-      title: "Digital Marketing Campaign",
-      category: "Digital",
-      year: "2024",
-      description: "Comprehensive digital marketing campaign with social media graphics, email templates, and web banners.",
-      tags: ["Digital", "Marketing", "Social Media"],
-      featured: false,
-      team: "3 designers",
-      duration: "6 weeks",
-      awards: "Marketing Excellence",
-      stats: "Engagement +65%",
-      image: portfolio02
-    },
-    {
-      id: 3,
-      title: "Product Packaging Design",
-      category: "Packaging",
-      year: "2024",
-      description: "Innovative packaging design for a premium skincare line, focusing on sustainability and luxury appeal.",
-      tags: ["Packaging", "Sustainability", "Luxury"],
-      featured: true,
-      team: "2 designers",
-      duration: "4 weeks",
-      awards: "Packaging Innovation",
-      stats: "Sales +28%",
-      image: portfolio03
-    },
-    {
-      id: 4,
-      title: "Website Redesign",
-      category: "Web",
-      year: "2024",
-      description: "Complete website redesign for a financial services company, improving user experience and conversion rates.",
-      tags: ["Web", "UI/UX", "Finance"],
-      featured: false,
-      team: "4 designers",
-      duration: "8 weeks",
-      awards: "Web Design Award",
-      stats: "Conversion +45%",
-      image: portfolio04
-    },
-    {
-      id: 5,
-      title: "Print Advertising",
-      category: "Print",
-      year: "2023",
-      description: "Series of print advertisements for a retail brand, maintaining consistency across multiple formats and sizes.",
-      tags: ["Print", "Advertising", "Retail"],
-      featured: false,
-      team: "Solo Designer",
-      duration: "2 weeks",
-      awards: "Print Excellence",
-      stats: "Response +32%",
-      image: portfolio05
-    },
-    {
-      id: 6,
-      title: "Social Media Graphics",
-      category: "Social",
-      year: "2023",
-      description: "Comprehensive social media graphics package including posts, stories, and profile optimization for various platforms.",
-      tags: ["Social Media", "Graphics", "Branding"],
-      featured: true,
-      team: "2 designers",
-      duration: "5 weeks",
-      awards: "Social Media Award",
-      stats: "Reach +55%",
-      image: portfolio06
-    }
-  ], []);
+  const portfolioItems = useMemo(
+    () => [
+      {
+        id: 1,
+        title: "Brand Identity System",
+        category: "Branding",
+        year: "2024",
+        description:
+          "Complete brand identity system including logo, color palette, typography, and comprehensive guidelines for a tech startup.",
+        tags: ["Branding", "Identity", "Guidelines"],
+        featured: true,
+        team: "Solo Designer",
+        duration: "3 weeks",
+        awards: "Design Excellence Award 2024",
+        stats: "Brand recognition +40%",
+        image: portfolio01,
+      },
+      {
+        id: 2,
+        title: "Digital Marketing Campaign",
+        category: "Digital",
+        year: "2024",
+        description:
+          "Comprehensive digital marketing campaign with social media graphics, email templates, and web banners.",
+        tags: ["Digital", "Marketing", "Social Media"],
+        featured: false,
+        team: "3 designers",
+        duration: "6 weeks",
+        awards: "Marketing Excellence",
+        stats: "Engagement +65%",
+        image: portfolio02,
+      },
+      {
+        id: 3,
+        title: "Product Packaging Design",
+        category: "Packaging",
+        year: "2024",
+        description:
+          "Innovative packaging design for a premium skincare line, focusing on sustainability and luxury appeal.",
+        tags: ["Packaging", "Sustainability", "Luxury"],
+        featured: true,
+        team: "2 designers",
+        duration: "4 weeks",
+        awards: "Packaging Innovation",
+        stats: "Sales +28%",
+        image: portfolio03,
+      },
+      {
+        id: 4,
+        title: "Website Redesign",
+        category: "Web",
+        year: "2024",
+        description:
+          "Complete website redesign for a financial services company, improving user experience and conversion rates.",
+        tags: ["Web", "UI/UX", "Finance"],
+        featured: false,
+        team: "4 designers",
+        duration: "8 weeks",
+        awards: "Web Design Award",
+        stats: "Conversion +45%",
+        image: portfolio04,
+      },
+      {
+        id: 5,
+        title: "Print Advertising",
+        category: "Print",
+        year: "2023",
+        description:
+          "Series of print advertisements for a retail brand, maintaining consistency across multiple formats and sizes.",
+        tags: ["Print", "Advertising", "Retail"],
+        featured: false,
+        team: "Solo Designer",
+        duration: "2 weeks",
+        awards: "Print Excellence",
+        stats: "Response +32%",
+        image: portfolio05,
+      },
+      {
+        id: 6,
+        title: "Social Media Graphics",
+        category: "Social",
+        year: "2023",
+        description:
+          "Comprehensive social media graphics package including posts, stories, and profile optimization for various platforms.",
+        tags: ["Social Media", "Graphics", "Branding"],
+        featured: true,
+        team: "2 designers",
+        duration: "5 weeks",
+        awards: "Social Media Award",
+        stats: "Reach +55%",
+        image: portfolio06,
+      },
+    ],
+    []
+  );
 
-  const categories = useMemo(() => ["All", "Branding", "Digital", "Packaging", "Web", "Print", "Social"], []);
+  const categories = useMemo(
+    () => ["All", "Branding", "Digital", "Packaging", "Web", "Print", "Social"],
+    []
+  );
   const years = useMemo(() => ["All", "2024", "2023", "2022"], []);
 
   const filteredItems = useMemo(() => {
-    const filtered = portfolioItems.filter(item => {
-      const matchesSearch = item.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                           item.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                           item.tags.some(tag => tag.toLowerCase().includes(searchTerm.toLowerCase()));
-      const matchesCategory = selectedCategory === "" || selectedCategory === "All" || item.category === selectedCategory;
-      const matchesYear = selectedYear === "" || selectedYear === "All" || item.year === selectedYear;
-      
+    const filtered = portfolioItems.filter((item) => {
+      const matchesSearch =
+        item.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        item.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        item.tags.some((tag) =>
+          tag.toLowerCase().includes(searchTerm.toLowerCase())
+        );
+      const matchesCategory =
+        selectedCategory === "" ||
+        selectedCategory === "All" ||
+        item.category === selectedCategory;
+      const matchesYear =
+        selectedYear === "" ||
+        selectedYear === "All" ||
+        item.year === selectedYear;
+
       return matchesSearch && matchesCategory && matchesYear;
     });
-    
-    console.log('PortfolioList - filteredItems:', filtered);
-    console.log('PortfolioList - portfolioItems:', portfolioItems);
-    console.log('PortfolioList - searchTerm:', searchTerm);
-    console.log('PortfolioList - selectedCategory:', selectedCategory);
-    console.log('PortfolioList - selectedYear:', selectedYear);
-    
+
+    console.log("PortfolioList - filteredItems:", filtered);
+    console.log("PortfolioList - portfolioItems:", portfolioItems);
+    console.log("PortfolioList - searchTerm:", searchTerm);
+    console.log("PortfolioList - selectedCategory:", selectedCategory);
+    console.log("PortfolioList - selectedYear:", selectedYear);
+
     return filtered;
   }, [searchTerm, selectedCategory, selectedYear, portfolioItems]);
 
   const EmptyState = () => (
     <div className="text-center py-16 md:py-24">
       <Search className="h-12 w-12 md:h-16 md:w-16 text-brand-forest/60 mx-auto mb-4 md:mb-6" />
-      <h3 className="text-lg md:text-xl font-semibold text-brand-forest mb-2 md:mb-4">No projects found</h3>
+      <h3 className="text-lg md:text-xl font-semibold text-brand-forest mb-2 md:mb-4">
+        No projects found
+      </h3>
       <p className="text-brand-forest/60 mb-4 md:mb-6 text-sm md:text-base">
-        Try adjusting your search terms or filters to find what you're looking for.
+        Try adjusting your search terms or filters to find what you're looking
+        for.
       </p>
       <button
         onClick={() => {
@@ -168,23 +205,30 @@ const PortfolioList = () => {
 
   return (
     <div className="min-h-screen bg-brand-cream text-brand-forest">
-      {/* Debug Info */}
-      <div className="bg-red-500 text-white p-4 text-center">
-        Debug: PortfolioList Component Rendered | filteredItems: {filteredItems.length} | portfolioItems: {portfolioItems.length}
-      </div>
-      
       {/* Enhanced Header */}
       <div className="relative bg-gradient-to-b from-brand-cream via-brand-cream/95 to-brand-olive/10 border-b border-brand-forest/20 overflow-hidden">
         <div className="absolute top-20 left-10 w-64 h-64 md:w-96 md:h-96 bg-brand-green/10 rounded-full blur-3xl animate-pulse" />
         <div className="absolute bottom-20 right-10 w-80 h-80 md:w-[500px] md:h-[500px] bg-brand-olive/10 rounded-full blur-3xl animate-pulse delay-1000" />
-        
+
         <div className="container relative z-10 px-4 sm:px-6 py-16 md:py-20">
-          <div className={cn("text-center max-w-4xl mx-auto transition-all duration-700", isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8")}>
+          <div
+            className={cn(
+              "text-center max-w-4xl mx-auto transition-all duration-700",
+              isVisible
+                ? "opacity-100 translate-y-0"
+                : "opacity-0 translate-y-8"
+            )}
+          >
             <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-brand-forest mb-6 md:mb-8">
-              Our <span className="bg-gradient-to-r from-brand-green to-brand-olive bg-clip-text text-transparent">Portfolio</span>
+              Our{" "}
+              <span className="bg-gradient-to-r from-brand-green to-brand-olive bg-clip-text text-transparent">
+                Portfolio
+              </span>
             </h1>
             <p className="text-base sm:text-lg md:text-xl text-brand-forest/80 max-w-3xl mx-auto leading-relaxed px-4 sm:px-0">
-              Explore our curated collection of projects that showcase strategic thinking, creative excellence, and measurable results across various design disciplines.
+              Explore our curated collection of projects that showcase strategic
+              thinking, creative excellence, and measurable results across
+              various design disciplines.
             </p>
           </div>
         </div>
@@ -220,14 +264,22 @@ const PortfolioList = () => {
             <div className="flex items-center gap-2 border border-brand-forest/20 rounded-lg p-1 w-full sm:w-auto justify-center bg-white/50 backdrop-blur-sm">
               <button
                 onClick={() => setViewMode("grid")}
-                className={`p-2 rounded-md transition-all duration-300 ${viewMode === "grid" ? "bg-brand-green text-white" : "text-brand-forest hover:text-brand-green"}`}
+                className={`p-2 rounded-md transition-all duration-300 ${
+                  viewMode === "grid"
+                    ? "bg-brand-green text-white"
+                    : "text-brand-forest hover:text-brand-green"
+                }`}
                 aria-label="Grid view"
               >
                 <Grid3X3 className="h-4 w-4 md:h-5 md:w-5" />
               </button>
               <button
                 onClick={() => setViewMode("list")}
-                className={`p-2 rounded-md transition-all duration-300 ${viewMode === "list" ? "bg-brand-green text-white" : "text-brand-forest hover:text-brand-green"}`}
+                className={`p-2 rounded-md transition-all duration-300 ${
+                  viewMode === "list"
+                    ? "bg-brand-green text-white"
+                    : "text-brand-forest hover:text-brand-green"
+                }`}
                 aria-label="List view"
               >
                 <List className="h-4 w-4 md:h-5 md:w-5" />
@@ -244,8 +296,10 @@ const PortfolioList = () => {
                 className="w-full sm:w-auto px-3 py-2 rounded-lg border border-brand-forest/20 bg-white/50 backdrop-blur-sm text-brand-forest focus:border-brand-green transition-colors duration-300 text-sm md:text-base"
               >
                 <option value="">All Categories</option>
-                {categories.slice(1).map(category => (
-                  <option key={category} value={category}>{category}</option>
+                {categories.slice(1).map((category) => (
+                  <option key={category} value={category}>
+                    {category}
+                  </option>
                 ))}
               </select>
               <select
@@ -254,8 +308,10 @@ const PortfolioList = () => {
                 className="w-full sm:w-auto px-3 py-2 rounded-lg border border-brand-forest/20 bg-white/50 backdrop-blur-sm text-brand-forest focus:border-brand-green transition-colors duration-300 text-sm md:text-base"
               >
                 <option value="">All Years</option>
-                {years.slice(1).map(year => (
-                  <option key={year} value={year}>{year}</option>
+                {years.slice(1).map((year) => (
+                  <option key={year} value={year}>
+                    {year}
+                  </option>
                 ))}
               </select>
             </div>
@@ -263,32 +319,53 @@ const PortfolioList = () => {
         </div>
 
         {/* Featured Projects */}
-        {filteredItems.filter(item => item.featured).length > 0 && (
+        {filteredItems.filter((item) => item.featured).length > 0 && (
           <div className="mb-12 md:mb-16">
-            <h2 className="text-2xl md:text-3xl font-bold text-brand-forest mb-8">Featured Projects</h2>
+            <h2 className="text-2xl md:text-3xl font-bold text-brand-forest mb-8">
+              Featured Projects
+            </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-              {filteredItems.filter(item => item.featured).map((item, index) => (
-                <PortfolioCard key={item.id} item={item} viewMode="grid" delay={index * 100} />
-              ))}
+              {filteredItems
+                .filter((item) => item.featured)
+                .map((item, index) => (
+                  <PortfolioCard
+                    key={item.id}
+                    item={item}
+                    viewMode="grid"
+                    delay={index * 100}
+                  />
+                ))}
             </div>
           </div>
         )}
 
         {/* All Projects */}
         <div>
-          <h2 className="text-2xl md:text-3xl font-bold text-brand-forest mb-8">All Projects</h2>
+          <h2 className="text-2xl md:text-3xl font-bold text-brand-forest mb-8">
+            All Projects
+          </h2>
           {filteredItems.length === 0 ? (
             <EmptyState />
           ) : viewMode === "grid" ? (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
               {filteredItems.map((item, index) => (
-                <PortfolioCard key={item.id} item={item} viewMode="grid" delay={index * 100} />
+                <PortfolioCard
+                  key={item.id}
+                  item={item}
+                  viewMode="grid"
+                  delay={index * 100}
+                />
               ))}
             </div>
           ) : (
             <div className="space-y-6">
               {filteredItems.map((item, index) => (
-                <PortfolioCard key={item.id} item={item} viewMode="list" delay={index * 100} />
+                <PortfolioCard
+                  key={item.id}
+                  item={item}
+                  viewMode="list"
+                  delay={index * 100}
+                />
               ))}
             </div>
           )}
@@ -298,7 +375,15 @@ const PortfolioList = () => {
   );
 };
 
-const PortfolioCard = ({ item, viewMode, delay }: { item: PortfolioItem; viewMode: "grid" | "list"; delay: number }) => {
+const PortfolioCard = ({
+  item,
+  viewMode,
+  delay,
+}: {
+  item: PortfolioItem;
+  viewMode: "grid" | "list";
+  delay: number;
+}) => {
   const cardRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
@@ -320,11 +405,11 @@ const PortfolioCard = ({ item, viewMode, delay }: { item: PortfolioItem; viewMod
           "group relative overflow-hidden rounded-xl md:rounded-2xl border border-brand-forest/20 bg-white/80 backdrop-blur-sm hover:border-brand-green/30 transition-all duration-500 hover:shadow-xl hover:scale-[1.02]",
           "transition-all duration-700"
         )}
-        style={{ 
+        style={{
           transitionDelay: `${delay}ms`,
           opacity: 0,
           transform: "translateY(20px)",
-          transition: "opacity 0.6s ease-out, transform 0.6s ease-out"
+          transition: "opacity 0.6s ease-out, transform 0.6s ease-out",
         }}
       >
         {/* Featured Badge */}
@@ -346,7 +431,7 @@ const PortfolioCard = ({ item, viewMode, delay }: { item: PortfolioItem; viewMod
             className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-brand-forest/80 via-brand-forest/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-          
+
           {/* Category Badge */}
           <div className="absolute top-3 right-3">
             <span className="inline-flex items-center px-2 py-1 sm:px-3 sm:py-1 rounded-full text-xs font-medium bg-white/90 backdrop-blur-sm text-brand-forest border border-brand-forest/20">
@@ -356,7 +441,7 @@ const PortfolioCard = ({ item, viewMode, delay }: { item: PortfolioItem; viewMod
 
           {/* View Detail Button */}
           <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500 p-4">
-            <a 
+            <a
               href={`/portfolio/${item.id}`}
               className="bg-white/90 hover:bg-white text-brand-forest border-0 shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-110 w-full sm:w-auto group/btn rounded-xl px-6 py-3 font-semibold flex items-center justify-center gap-2"
             >
@@ -375,7 +460,7 @@ const PortfolioCard = ({ item, viewMode, delay }: { item: PortfolioItem; viewMod
             </h3>
             <ArrowUpRight className="h-4 w-4 sm:h-5 sm:w-5 text-brand-forest/60 group-hover:text-brand-green transition-all duration-300 group-hover:translate-x-1 group-hover:-translate-y-1 flex-shrink-0 ml-2" />
           </div>
-          
+
           <p className="text-xs sm:text-sm text-brand-forest/70 mb-3 sm:mb-4 leading-relaxed line-clamp-2">
             {item.description}
           </p>
@@ -401,7 +486,7 @@ const PortfolioCard = ({ item, viewMode, delay }: { item: PortfolioItem; viewMod
           {/* Tags */}
           <div className="flex flex-wrap gap-1 sm:gap-2">
             {item.tags.slice(0, 2).map((tag, index) => (
-              <span 
+              <span
                 key={index}
                 className="inline-flex items-center px-2 py-1 rounded-md text-xs font-medium bg-brand-olive/10 text-brand-forest border border-brand-olive/20"
               >
@@ -427,11 +512,11 @@ const PortfolioCard = ({ item, viewMode, delay }: { item: PortfolioItem; viewMod
         "group relative overflow-hidden rounded-xl md:rounded-2xl border border-brand-forest/20 bg-white/80 backdrop-blur-sm transition-all duration-500 hover:scale-[1.02] hover:shadow-xl hover:border-brand-green/30",
         "transition-all duration-700"
       )}
-      style={{ 
+      style={{
         transitionDelay: `${delay}ms`,
         opacity: 0,
         transform: "translateY(20px)",
-        transition: "opacity 0.6s ease-out, transform 0.6s ease-out"
+        transition: "opacity 0.6s ease-out, transform 0.6s ease-out",
       }}
     >
       <div className="flex flex-col sm:flex-row">
@@ -444,7 +529,7 @@ const PortfolioCard = ({ item, viewMode, delay }: { item: PortfolioItem; viewMod
             className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-brand-forest/80 via-brand-forest/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-          
+
           {/* Featured Badge */}
           {item.featured && (
             <div className="absolute top-3 left-3">
@@ -471,7 +556,7 @@ const PortfolioCard = ({ item, viewMode, delay }: { item: PortfolioItem; viewMod
             </h3>
             <ArrowUpRight className="h-4 w-4 sm:h-5 sm:w-5 text-brand-forest/60 group-hover:text-brand-green transition-all duration-300 group-hover:translate-x-1 group-hover:-translate-y-1 flex-shrink-0 ml-2" />
           </div>
-          
+
           <p className="text-xs sm:text-sm text-brand-forest/70 mb-3 sm:mb-4 leading-relaxed line-clamp-2">
             {item.description}
           </p>
@@ -495,7 +580,7 @@ const PortfolioCard = ({ item, viewMode, delay }: { item: PortfolioItem; viewMod
           {/* Tags */}
           <div className="flex flex-wrap gap-1 sm:gap-2 mt-3">
             {item.tags.slice(0, 3).map((tag, index) => (
-              <span 
+              <span
                 key={index}
                 className="inline-flex items-center px-2 py-1 rounded-md text-xs font-medium bg-brand-olive/10 text-brand-forest border border-brand-olive/20"
               >
@@ -511,7 +596,7 @@ const PortfolioCard = ({ item, viewMode, delay }: { item: PortfolioItem; viewMod
 
           {/* View Button */}
           <div className="mt-4">
-            <a 
+            <a
               href={`/portfolio/${item.id}`}
               className="inline-flex items-center gap-2 text-brand-green hover:text-brand-olive transition-colors duration-300 font-medium text-sm"
             >
