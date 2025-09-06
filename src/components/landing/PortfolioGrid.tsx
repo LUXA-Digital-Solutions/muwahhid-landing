@@ -3,12 +3,13 @@ import { cn } from "@/lib/utils";
 import { useEffect, useState } from "react";
 import { Star, Clock, Users, Award, ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
-import portfolio01 from "@/assets/portfolio-01.jpg";
-import portfolio02 from "@/assets/portfolio-02.jpg";
-import portfolio03 from "@/assets/portfolio-03.jpg";
-import portfolio04 from "@/assets/portfolio-04.jpg";
-import portfolio05 from "@/assets/portfolio-05.jpg";
-import portfolio06 from "@/assets/portfolio-06.jpg";
+// Import images from public assets
+const mutoonhub = "/assets/mutoonhub.png";
+const ayyub = "/assets/ayyub.png";
+const square = "/assets/square.png";
+const okiki = "/assets/okiki.png";
+const halal = "/assets/halal.png";
+const cway = "/assets/cway.png";
 
 const PortfolioGrid = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -27,69 +28,69 @@ const PortfolioGrid = () => {
   const items = [
     {
       id: 1,
-      title: "Brand Identity System",
-      category: "Branding",
-      image: portfolio01,
+      title: "MutoonHub",
+      category: "Web Development",
+      image: mutoonhub,
       featured: true,
-      team: "Solo",
-      duration: "3 weeks",
-      awards: "Design Award 2024",
-      stats: "Brand recognition +40%",
+      team: "Full-stack Team",
+      duration: "6 months",
+      awards: "Best Educational Platform",
+      stats: "10k+ Active Users",
     },
     {
       id: 2,
-      title: "Digital Marketing Campaign",
-      category: "Digital",
-      image: portfolio02,
-      featured: false,
-      team: "3 designers",
-      duration: "6 weeks",
-      awards: "Marketing Excellence",
-      stats: "Engagement +65%",
+      title: "Ayyub",
+      category: "Mobile App",
+      image: ayyub,
+      featured: true,
+      team: "Cross-platform Team",
+      duration: "4 months",
+      awards: "Innovation in HR Tech",
+      stats: "5k+ Job Matches",
     },
     {
       id: 3,
-      title: "Product Packaging Design",
-      category: "Packaging",
-      image: portfolio03,
+      title: "Square Financial",
+      category: "Fintech",
+      image: square,
       featured: true,
-      team: "2 designers",
-      duration: "4 weeks",
-      awards: "Packaging Innovation",
-      stats: "Sales +28%",
+      team: "Finance Team",
+      duration: "12 months",
+      awards: "Financial Innovation",
+      stats: "100k+ Users",
     },
     {
       id: 4,
-      title: "Website Redesign",
-      category: "Web",
-      image: portfolio04,
-      featured: false,
-      team: "4 designers",
-      duration: "8 weeks",
-      awards: "Web Design Award",
-      stats: "Conversion +45%",
+      title: "Okiki Homes",
+      category: "Real Estate",
+      image: okiki,
+      featured: true,
+      team: "Product Team",
+      duration: "6 months",
+      awards: "PropTech Innovation",
+      stats: "1000+ Listings",
     },
     {
       id: 5,
-      title: "Print Advertising",
-      category: "Print",
-      image: portfolio05,
-      featured: false,
-      team: "Solo",
-      duration: "2 weeks",
-      awards: "Print Excellence",
-      stats: "Response +32%",
+      title: "Halal Verification",
+      category: "Web Application",
+      image: halal,
+      featured: true,
+      team: "Full-stack Team",
+      duration: "3 months",
+      awards: "Best Industry Solution",
+      stats: "1000+ Certifications",
     },
     {
       id: 6,
-      title: "Social Media Graphics",
-      category: "Social",
-      image: portfolio06,
+      title: "C-Way Analytics",
+      category: "Enterprise Solution",
+      image: cway,
       featured: true,
-      team: "2 designers",
-      duration: "5 weeks",
-      awards: "Social Media Award",
-      stats: "Reach +55%",
+      team: "Enterprise Team",
+      duration: "8 months",
+      awards: "Enterprise Excellence",
+      stats: "100+ Companies",
     },
   ];
 

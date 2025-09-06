@@ -14,12 +14,17 @@ import {
   Award,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
-import portfolio01 from "@/assets/portfolio-01.jpg";
-import portfolio02 from "@/assets/portfolio-02.jpg";
-import portfolio03 from "@/assets/portfolio-03.jpg";
-import portfolio04 from "@/assets/portfolio-04.jpg";
-import portfolio05 from "@/assets/portfolio-05.jpg";
-import portfolio06 from "@/assets/portfolio-06.jpg";
+// Import images from public assets
+const mutoonhub = "/assets/mutoonhub.png";
+const ayyub = "/assets/ayyub.png";
+const bites = "/assets/bites.png";
+const cway = "/assets/cway.png";
+const halal = "/assets/halal.png";
+const mtech = "/assets/mtech.jpg";
+const munarh = "/assets/Munarh.png";
+const okiki = "/assets/okiki.png";
+const solar = "/assets/solar.png";
+const square = "/assets/square.png";
 
 interface PortfolioItem {
   id: number;
@@ -53,100 +58,171 @@ const PortfolioList = () => {
     () => [
       {
         id: 1,
-        title: "Brand Identity System",
-        category: "Branding",
-        year: "2024",
+        title: "MutoonHub",
+        category: "Web Development",
+        year: "2023",
         description:
-          "Complete brand identity system including logo, color palette, typography, and comprehensive guidelines for a tech startup.",
-        tags: ["Branding", "Identity", "Guidelines"],
+          "A comprehensive Islamic learning platform providing access to classical texts and modern educational resources.",
+        tags: ["Next.js", "TypeScript", "TailwindCSS"],
         featured: true,
-        team: "Solo Designer",
-        duration: "3 weeks",
-        awards: "Design Excellence Award 2024",
-        stats: "Brand recognition +40%",
-        image: portfolio01,
+        team: "Full-stack Team",
+        duration: "6 months",
+        awards: "Best Educational Platform",
+        stats: "10k+ Active Users",
+        image: mutoonhub,
       },
       {
         id: 2,
-        title: "Digital Marketing Campaign",
-        category: "Digital",
+        title: "Ayyub",
+        category: "Mobile App",
         year: "2024",
         description:
-          "Comprehensive digital marketing campaign with social media graphics, email templates, and web banners.",
-        tags: ["Digital", "Marketing", "Social Media"],
-        featured: false,
-        team: "3 designers",
-        duration: "6 weeks",
-        awards: "Marketing Excellence",
-        stats: "Engagement +65%",
-        image: portfolio02,
+          "Revolutionary job search and recruitment platform connecting talents with opportunities in the tech industry.",
+        tags: ["React Native", "Mobile", "AI"],
+        featured: true,
+        team: "Cross-platform Team",
+        duration: "4 months",
+        awards: "Innovation in HR Tech",
+        stats: "5k+ Job Matches",
+        image: ayyub,
       },
       {
         id: 3,
-        title: "Product Packaging Design",
-        category: "Packaging",
-        year: "2024",
+        title: "Halal Verification",
+        category: "Web Application",
+        year: "2023",
         description:
-          "Innovative packaging design for a premium skincare line, focusing on sustainability and luxury appeal.",
-        tags: ["Packaging", "Sustainability", "Luxury"],
+          "Digital platform for halal certification and verification, streamlining the process for businesses and consumers.",
+        tags: ["Web App", "Blockchain", "API"],
         featured: true,
-        team: "2 designers",
-        duration: "4 weeks",
-        awards: "Packaging Innovation",
-        stats: "Sales +28%",
-        image: portfolio03,
+        team: "Full-stack Team",
+        duration: "3 months",
+        awards: "Best Industry Solution",
+        stats: "1000+ Certifications",
+        image: halal,
       },
       {
         id: 4,
-        title: "Website Redesign",
-        category: "Web",
+        title: "Bites",
+        category: "E-commerce",
         year: "2024",
         description:
-          "Complete website redesign for a financial services company, improving user experience and conversion rates.",
-        tags: ["Web", "UI/UX", "Finance"],
+          "Modern food delivery platform connecting local restaurants with customers, featuring real-time tracking and seamless payments.",
+        tags: ["Mobile", "Web", "Payments"],
         featured: false,
-        team: "4 designers",
-        duration: "8 weeks",
-        awards: "Web Design Award",
-        stats: "Conversion +45%",
-        image: portfolio04,
+        team: "Product Team",
+        duration: "5 months",
+        awards: "Best UX Design",
+        stats: "50k+ Orders",
+        image: bites,
       },
       {
         id: 5,
-        title: "Print Advertising",
-        category: "Print",
+        title: "C-Way Analytics",
+        category: "Enterprise Solution",
         year: "2023",
         description:
-          "Series of print advertisements for a retail brand, maintaining consistency across multiple formats and sizes.",
-        tags: ["Print", "Advertising", "Retail"],
-        featured: false,
-        team: "Solo Designer",
-        duration: "2 weeks",
-        awards: "Print Excellence",
-        stats: "Response +32%",
-        image: portfolio05,
+          "Advanced analytics and business intelligence platform for enterprise decision-making and data visualization.",
+        tags: ["Analytics", "Dashboard", "Big Data"],
+        featured: true,
+        team: "Enterprise Team",
+        duration: "8 months",
+        awards: "Enterprise Excellence",
+        stats: "100+ Companies",
+        image: cway,
       },
       {
         id: 6,
-        title: "Social Media Graphics",
-        category: "Social",
+        title: "MTech Solutions",
+        category: "Technology",
+        year: "2024",
+        description:
+          "Comprehensive IT solutions provider offering cloud services, cybersecurity, and digital transformation consulting.",
+        tags: ["Cloud", "Security", "Consulting"],
+        featured: false,
+        team: "Tech Team",
+        duration: "Ongoing",
+        awards: "Tech Innovation",
+        stats: "50+ Projects",
+        image: mtech,
+      },
+      {
+        id: 7,
+        title: "Munarh",
+        category: "Web Development",
+        year: "2024",
+        description:
+          "Personal portfolio and architectural showcase platform highlighting innovative design projects and achievements.",
+        tags: ["Portfolio", "Architecture", "Design"],
+        featured: false,
+        team: "Design Team",
+        duration: "2 months",
+        awards: "Design Excellence",
+        stats: "100k+ Views",
+        image: munarh,
+      },
+      {
+        id: 8,
+        title: "Okiki Homes",
+        category: "Real Estate",
         year: "2023",
         description:
-          "Comprehensive social media graphics package including posts, stories, and profile optimization for various platforms.",
-        tags: ["Social Media", "Graphics", "Branding"],
+          "Digital real estate platform revolutionizing property search and management with virtual tours and smart features.",
+        tags: ["PropTech", "VR", "Mobile"],
         featured: true,
-        team: "2 designers",
-        duration: "5 weeks",
-        awards: "Social Media Award",
-        stats: "Reach +55%",
-        image: portfolio06,
+        team: "Product Team",
+        duration: "6 months",
+        awards: "PropTech Innovation",
+        stats: "1000+ Listings",
+        image: okiki,
+      },
+      {
+        id: 9,
+        title: "Solar Solutions",
+        category: "Energy",
+        year: "2024",
+        description:
+          "Renewable energy management platform for monitoring and optimizing solar installations and energy consumption.",
+        tags: ["IoT", "Energy", "Dashboard"],
+        featured: false,
+        team: "Tech Team",
+        duration: "4 months",
+        awards: "Green Innovation",
+        stats: "500+ Installations",
+        image: solar,
+      },
+      {
+        id: 10,
+        title: "Square Financial",
+        category: "Fintech",
+        year: "2023",
+        description:
+          "Digital banking and financial management platform offering modern banking solutions and investment tools.",
+        tags: ["Fintech", "Banking", "Security"],
+        featured: true,
+        team: "Finance Team",
+        duration: "12 months",
+        awards: "Financial Innovation",
+        stats: "100k+ Users",
+        image: square,
       },
     ],
     []
   );
 
   const categories = useMemo(
-    () => ["All", "Branding", "Digital", "Packaging", "Web", "Print", "Social"],
+    () => [
+      "All",
+      "Web Development",
+      "Mobile App",
+      "Web Application",
+      "E-commerce",
+      "Enterprise Solution",
+      "Technology",
+      "Real Estate",
+      "Energy",
+      "Fintech",
+    ],
     []
   );
   const years = useMemo(() => ["All", "2024", "2023", "2022"], []);
