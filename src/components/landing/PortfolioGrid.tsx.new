@@ -1,0 +1,316 @@
+import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
+import { useEffect, useState } from "react";
+import { Star, Clock, Users, Award, ArrowRight } from "lucide-react";
+import { motion, AnimatePresence, Variants } from "framer-motion";
+import * as React from 'react';
+
+// Import images from public assets
+const mutoonhub = "/assets/mutoonhub.png";
+const ayyub = "/assets/ayyub.png";
+const square = "/assets/square.png";
+const okiki = "/assets/okiki.png";
+const halal = "/assets/halal.png";
+const cway = "/assets/cway.png";
+
+interface PortfolioItem {
+  id: number;
+  title: string;
+  category: string;
+  image: string;
+  featured: boolean;
+  team: string;
+  duration: string;
+  awards: string;
+  stats: string;
+}
+
+const cardVariants: Variants = {
+  hidden: { 
+    opacity: 0,
+    y: -50,
+    scale: 0.9
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: {
+      type: "spring",
+      stiffness: 100,
+      damping: 15,
+      mass: 1
+    }
+  },
+  hover: {
+    y: -10,
+    scale: 1.05,
+    transition: {
+      type: "spring",
+      stiffness: 400,
+      damping: 25
+    }
+  }
+};
+
+const containerVariants: Variants = {
+  hidden: { 
+    opacity: 0,
+    transition: { staggerChildren: 0.07 }
+  },
+  visible: {
+    opacity: 1,
+    transition: {
+      type: "tween",
+      duration: 0.6,
+      when: "beforeChildren",
+      staggerChildren: 0.2,
+      delayChildren: 0.3
+    }
+  }
+};
+
+const items: PortfolioItem[] = [
+  {
+    id: 1,
+    title: "MutoonHub",
+    category: "Web Development",
+    image: mutoonhub,
+    featured: true,
+    team: "Full-stack Team",
+    duration: "6 months",
+    awards: "Best Educational Platform",
+    stats: "10k+ Active Users",
+  },
+  {
+    id: 2,
+    title: "Ayyub",
+    category: "Mobile App",
+    image: ayyub,
+    featured: true,
+    team: "Cross-platform Team",
+    duration: "4 months",
+    awards: "Innovation in HR Tech",
+    stats: "5k+ Job Matches",
+  },
+  {
+    id: 3,
+    title: "Square Financial",
+    category: "Fintech",
+    image: square,
+    featured: true,
+    team: "Finance Team",
+    duration: "12 months",
+    awards: "Financial Innovation",
+    stats: "100k+ Users",
+  },
+  {
+    id: 4,
+    title: "Okiki Homes",
+    category: "Real Estate",
+    image: okiki,
+    featured: true,
+    team: "Product Team",
+    duration: "6 months",
+    awards: "PropTech Innovation",
+    stats: "1000+ Listings",
+  },
+  {
+    id: 5,
+    title: "Halal Verification",
+    category: "Web Application",
+    image: halal,
+    featured: true,
+    team: "Full-stack Team",
+    duration: "3 months",
+    awards: "Best Industry Solution",
+    stats: "1000+ Certifications",
+  },
+  {
+    id: 6,
+    title: "C-Way Analytics",
+    category: "Enterprise Solution",
+    image: cway,
+    featured: true,
+    team: "Enterprise Team",
+    duration: "8 months",
+    awards: "Enterprise Excellence",
+    stats: "100+ Companies",
+  },
+];
+
+const PortfolioGrid: React.FC = () => {
+  const [isVisible, setIsVisible] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    // Simulate loading time
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+      setIsVisible(true);
+    }, 1000);
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  return (
+    <motion.section
+      id="work"
+      className="py-16 md:py-20 lg:py-24 bg-gradient-to-br from-brand-cream via-brand-cream to-brand-olive/5 overflow-hidden"
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ 
+        duration: 0.6,
+        ease: [0.22, 1, 0.36, 1]
+      }}
+      viewport={{ once: true }}
+    >
+      <div className="container px-4 sm:px-6">
+        {/* Header */}
+        <div
+          className={cn(
+            "text-center mb-12 md:mb-16 transition-all duration-700",
+            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+          )}
+        >
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-brand-forest mb-4">
+            Selected{" "}
+            <span className="bg-gradient-to-r from-brand-green to-brand-olive bg-clip-text text-transparent">
+              Work
+            </span>
+          </h2>
+          <p className="text-lg md:text-xl text-brand-forest/80 max-w-2xl mx-auto">
+            A curated selection of projects that showcase strategic thinking and
+            creative excellence.
+          </p>
+        </div>
+
+        {/* Portfolio Grid */}
+        <motion.div 
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: false, margin: "-100px" }}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 mb-12 md:mb-16"
+        >
+          {isLoading ? (
+            // Loading skeletons
+            Array.from({ length: 6 }).map((_, index) => (
+              <motion.div
+                key={`skeleton-${index}`}
+                className="rounded-2xl bg-white shadow-lg overflow-hidden"
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+              >
+                <div className="h-64 md:h-72 bg-gradient-to-r from-gray-200 via-gray-100 to-gray-200 animate-pulse" />
+                <div className="p-6 space-y-3">
+                  <div className="h-4 bg-gradient-to-r from-gray-200 via-gray-100 to-gray-200 rounded animate-pulse" />
+                  <div className="h-6 bg-gradient-to-r from-gray-200 via-gray-100 to-gray-200 rounded animate-pulse w-3/4" />
+                  <div className="flex gap-4">
+                    <div className="h-4 bg-gradient-to-r from-gray-200 via-gray-100 to-gray-200 rounded animate-pulse w-1/3" />
+                    <div className="h-4 bg-gradient-to-r from-gray-200 via-gray-100 to-gray-200 rounded animate-pulse w-1/4" />
+                  </div>
+                </div>
+              </motion.div>
+            ))
+          ) : (
+            items.map((item, index) => (
+              <motion.article
+                key={item.id}
+                className="group relative overflow-hidden rounded-2xl bg-white shadow-lg cursor-pointer"
+                variants={cardVariants}
+                initial="hidden"
+                whileInView="visible"
+                custom={index}
+                viewport={{ once: true, margin: "-100px" }}
+                whileHover="hover"
+                whileTap="tap"
+              >
+                {item.featured && (
+                  <div className="absolute top-4 left-4 z-10 bg-gradient-to-r from-brand-green to-brand-olive text-white px-3 py-1 rounded-full text-xs font-medium flex items-center gap-1">
+                    <Star className="h-3 w-3" />
+                    Featured
+                  </div>
+                )}
+
+                <div className="relative h-64 md:h-72 overflow-hidden">
+                  <motion.img
+                    src={item.image}
+                    alt={item.title}
+                    className="w-full h-full object-cover"
+                    initial={{ scale: 1 }}
+                    whileHover={{ scale: 1.1 }}
+                    transition={{
+                      duration: 0.6,
+                      ease: [0.645, 0.045, 0.355, 1.000]
+                    }}
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-brand-forest/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                </div>
+
+                <div className="p-6">
+                  <div className="inline-block bg-brand-olive/10 text-brand-forest px-3 py-1 rounded-full text-sm font-medium mb-3">
+                    {item.category}
+                  </div>
+
+                  <h3 className="text-xl font-bold text-brand-forest mb-3 group-hover:text-brand-green transition-colors duration-300">
+                    {item.title}
+                  </h3>
+
+                  <div className="flex items-center gap-4 text-sm text-brand-forest/70 mb-4">
+                    <div className="flex items-center gap-1">
+                      <Clock className="h-4 w-4" />
+                      <span>{item.duration}</span>
+                    </div>
+                    <div className="flex items-center gap-1">
+                      <Users className="h-4 w-4" />
+                      <span>{item.team}</span>
+                    </div>
+                  </div>
+
+                  <div className="space-y-2 mb-4">
+                    {item.awards && (
+                      <div className="flex items-center gap-2 text-sm text-brand-green">
+                        <Award className="h-4 w-4" />
+                        <span>{item.awards}</span>
+                      </div>
+                    )}
+                    {item.stats && (
+                      <div className="text-sm text-brand-forest/80 font-medium">
+                        {item.stats}
+                      </div>
+                    )}
+                  </div>
+
+                  <div className="absolute inset-0 bg-gradient-to-t from-brand-green/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl" />
+                </div>
+              </motion.article>
+            ))
+          )}
+        </motion.div>
+
+        {/* View All Button */}
+        <div
+          className={cn(
+            "text-center transition-all duration-700 delay-500",
+            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+          )}
+        >
+          <Button
+            asChild
+            size="lg"
+            className="bg-gradient-to-r from-brand-green to-brand-olive hover:from-brand-green/90 hover:to-brand-olive/90 text-white shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 px-8 py-6 text-lg font-semibold"
+          >
+            <a href="/portfolio" className="flex items-center gap-2">
+              View All Projects
+              <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
+            </a>
+          </Button>
+        </div>
+      </div>
+    </motion.section>
+  );
+};
+
+export default PortfolioGrid;

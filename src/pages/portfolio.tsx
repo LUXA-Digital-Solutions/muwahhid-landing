@@ -1,9 +1,8 @@
-import { Button } from "@/components/ui/button";
-import { cn } from "@/lib/utils";
-import { useEffect, useState } from "react";
-import { Star, Clock, Users, Award, ArrowRight } from "lucide-react";
 import { motion, AnimatePresence, Variants } from "framer-motion";
-import * as React from "react";
+import { cn } from "@/lib/utils";
+import { useState, useEffect } from "react";
+import { Button } from "@/components/ui/button";
+import { ArrowRight, Search, Filter } from "lucide-react";
 
 // Import images from public assets
 const mutoonhub = "/assets/mutoonhub.png";
@@ -53,43 +52,20 @@ const cardVariants: Variants = {
   },
 };
 
-const expandButtonVariants: Variants = {
-  initial: {
-    y: 0,
-    opacity: 1,
-  },
-  hover: {
-    y: -5,
-    scale: 1.05,
-    transition: {
-      type: "spring",
-      stiffness: 400,
-      damping: 10,
-    },
-  },
-  tap: {
-    scale: 0.95,
-  },
-};
-
 const containerVariants: Variants = {
   hidden: {
     opacity: 0,
-    transition: { staggerChildren: 0.07 },
   },
   visible: {
     opacity: 1,
     transition: {
-      type: "tween",
-      duration: 0.6,
-      when: "beforeChildren",
-      staggerChildren: 0.2,
-      delayChildren: 0.3,
+      staggerChildren: 0.1,
     },
   },
 };
 
-const items: PortfolioItem[] = [
+// Extended portfolio items for the full portfolio page
+const portfolioItems: PortfolioItem[] = [
   {
     id: 1,
     title: "Essence of Nature",
@@ -153,14 +129,58 @@ const items: PortfolioItem[] = [
     year: "2024",
     tools: ["Illustrator", "Dimension", "KeyShot"],
   },
+  // Additional portfolio items for the full portfolio page
+  {
+    id: 7,
+    title: "Modern Workspace",
+    category: "Interior Design",
+    image: mutoonhub,
+    description: "Contemporary office space design visualization",
+    client: "WorkFlex Solutions",
+    year: "2025",
+    tools: ["3ds Max", "V-Ray", "Photoshop"],
+  },
+  {
+    id: 8,
+    title: "Tech Harmony",
+    category: "UI/UX Design",
+    image: ayyub,
+    description: "Mobile app interface design for music streaming",
+    client: "MusicStream Inc.",
+    year: "2025",
+    tools: ["Figma", "Principle", "After Effects"],
+  },
+  {
+    id: 9,
+    title: "Natural Flow",
+    category: "Motion Graphics",
+    image: square,
+    description: "Animated product showcase for wellness brand",
+    client: "Zen Wellness",
+    year: "2024",
+    tools: ["After Effects", "Illustrator", "Premiere Pro"],
+  },
 ];
 
-const PortfolioGrid: React.FC = () => {
+// Available categories for filtering
+const categories = [
+  "All",
+  "Brand Identity",
+  "Motion Design",
+  "Web Design",
+  "UI/UX Design",
+  "3D Design",
+  "Editorial Design",
+  "Packaging Design",
+];
+
+const PortfolioPage = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  const [selectedCategory, setSelectedCategory] = useState("All");
+  const [searchQuery, setSearchQuery] = useState("");
 
   useEffect(() => {
-    // Simulate loading time
     const timer = setTimeout(() => {
       setIsLoading(false);
       setIsVisible(true);
@@ -169,47 +189,96 @@ const PortfolioGrid: React.FC = () => {
     return () => clearTimeout(timer);
   }, []);
 
-  const displayedItems = items.slice(0, 6); // Always show first 6 items
+  // Filter projects based on category and search query
+  const filteredProjects = portfolioItems.filter((item) => {
+    const matchesCategory =
+      selectedCategory === "All" || item.category === selectedCategory;
+    const matchesSearch =
+      item.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      item.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      item.category.toLowerCase().includes(searchQuery.toLowerCase());
+    return matchesCategory && matchesSearch;
+  });
 
   return (
-    <motion.section
-      id="work"
-      className="py-16 md:py-20 lg:py-24 bg-white overflow-hidden"
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{
-        duration: 0.6,
-        ease: [0.22, 1, 0.36, 1],
-      }}
-      viewport={{ once: true }}
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      className="min-h-screen bg-white"
     >
-      <div className="container px-4 sm:px-6">
+      <div className="container px-4 sm:px-6 py-16 md:py-24">
         {/* Header */}
-        <div
-          className={cn(
-            "text-center mb-16 md:mb-20 transition-all duration-700",
-            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-          )}
-        >
-          <span className="text-sm font-medium tracking-wider text-brand-forest/60 uppercase mb-4 block">
+        <div className="text-center mb-16 md:mb-24">
+          <motion.h1
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="text-5xl md:text-6xl lg:text-7xl font-bold text-brand-forest mb-6"
+          >
             Portfolio
-          </span>
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-brand-forest mb-6">
-            Selected Work
-          </h2>
-          <p className="text-lg md:text-xl text-brand-forest/70 max-w-2xl mx-auto">
-            Crafting visual stories and digital experiences that inspire and
-            engage
-          </p>
+          </motion.h1>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="text-xl text-brand-forest/70 max-w-3xl mx-auto"
+          >
+            Explore my collection of creative projects spanning various design
+            disciplines
+          </motion.p>
         </div>
+
+        {/* Filter and Search Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+          className="mb-12"
+        >
+          <div className="flex flex-col md:flex-row gap-6 items-stretch md:items-center justify-between">
+            {/* Categories */}
+            <div className="flex items-center gap-3 overflow-x-auto pb-2 md:pb-0 scrollbar-hide">
+              <Filter className="h-5 w-5 text-brand-forest/40 flex-shrink-0" />
+              {categories.map((category) => (
+                <Button
+                  key={category}
+                  onClick={() => setSelectedCategory(category)}
+                  variant={
+                    selectedCategory === category ? "default" : "outline"
+                  }
+                  className={cn(
+                    "rounded-full px-6 text-sm whitespace-nowrap transition-all duration-300",
+                    selectedCategory === category
+                      ? "bg-brand-forest text-white shadow-lg"
+                      : "text-brand-forest/70 hover:text-brand-forest"
+                  )}
+                >
+                  {category}
+                </Button>
+              ))}
+            </div>
+
+            {/* Search */}
+            <div className="relative flex-shrink-0 w-full md:w-80">
+              <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 h-4 w-4 text-brand-forest/40" />
+              <input
+                type="text"
+                placeholder="Search projects..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="w-full pl-12 pr-4 py-3 rounded-full border border-brand-forest/10 focus:border-brand-forest/20 focus:ring-2 focus:ring-brand-forest/5 outline-none transition-all duration-300"
+              />
+            </div>
+          </div>
+        </motion.div>
 
         {/* Portfolio Grid */}
         <motion.div
           variants={containerVariants}
           initial="hidden"
-          whileInView="visible"
-          viewport={{ once: false, margin: "-100px" }}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10 mb-16 md:mb-20"
+          animate="visible"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10"
         >
           <AnimatePresence mode="wait">
             {isLoading
@@ -231,17 +300,13 @@ const PortfolioGrid: React.FC = () => {
                     </div>
                   </motion.div>
                 ))
-              : displayedItems.map((item, index) => (
+              : filteredProjects.map((item, index) => (
                   <motion.article
                     key={item.id}
                     className="group relative overflow-hidden rounded-3xl bg-gray-50 hover:bg-white shadow-sm hover:shadow-xl transition-all duration-500"
                     variants={cardVariants}
-                    initial="hidden"
-                    whileInView="visible"
-                    custom={index}
-                    viewport={{ once: true, margin: "-100px" }}
+                    layoutId={`project-${item.id}`}
                     whileHover="hover"
-                    layout
                   >
                     <div className="relative h-[400px] overflow-hidden">
                       <motion.img
@@ -316,39 +381,24 @@ const PortfolioGrid: React.FC = () => {
           </AnimatePresence>
         </motion.div>
 
-        {/* View All Projects Button */}
-        <motion.div
-          className={cn(
-            "text-center transition-all duration-700 delay-500",
-            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-          )}
-        >
-          <Button
-            asChild
-            size="lg"
-            className="group bg-brand-forest hover:bg-brand-forest/90 text-white shadow-lg hover:shadow-xl transition-all duration-300 px-8 py-6 text-lg font-medium rounded-full"
+        {/* Empty State */}
+        {!isLoading && filteredProjects.length === 0 && (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="text-center py-20"
           >
-            <motion.a
-              href="/portfolio"
-              className="flex items-center gap-2"
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-            >
-              View All Projects
-              <motion.div
-                className="transition-transform duration-300"
-                initial={{ x: 0 }}
-                animate={{ x: 0 }}
-                whileHover={{ x: 5 }}
-              >
-                <ArrowRight className="h-5 w-5" />
-              </motion.div>
-            </motion.a>
-          </Button>
-        </motion.div>
+            <h3 className="text-2xl font-bold text-brand-forest mb-4">
+              No projects found
+            </h3>
+            <p className="text-brand-forest/70">
+              Try adjusting your filters or search query
+            </p>
+          </motion.div>
+        )}
       </div>
-    </motion.section>
+    </motion.div>
   );
 };
 
-export default PortfolioGrid;
+export default PortfolioPage;
