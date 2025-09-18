@@ -90,7 +90,7 @@ const Hero = () => {
           {/* CTA Buttons */}
           <div
             className={cn(
-              "flex flex-col items-center justify-center gap-3 sm:gap-4 px-4 sm:px-0",
+              "flex items-center justify-center gap-3 sm:gap-4 px-4 sm:px-0",
               "transition-all duration-700 delay-1000",
               isVisible
                 ? "opacity-100 translate-y-0"
@@ -122,7 +122,6 @@ const Hero = () => {
                 aria-label="Contact designer"
                 className="flex items-center justify-center gap-2"
               >
-                {" "}
                 <Zap className="h-4 w-4 md:h-5 md:w-5 text-brand-green" />
                 Contact Me
               </a>

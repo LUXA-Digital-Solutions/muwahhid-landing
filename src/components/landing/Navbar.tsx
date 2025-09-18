@@ -66,7 +66,7 @@ const Navbar = () => {
         >
           <div className="relative h-8 w-8 md:h-10 md:w-10 transition-all duration-300 group-hover:scale-110">
             <img
-              src="/assets/AM_LW.png"
+              src="/assets/logo.png"
               alt="Muwahhid Logo"
               className="w-full h-full object-contain"
             />

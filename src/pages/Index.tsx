@@ -6,6 +6,7 @@ import Footer from "@/components/landing/Footer";
 import { Button } from "@/components/ui/button";
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
+import { Palette, FileImage, Globe } from "lucide-react";
 
 const Index = () => {
   const jsonLd = {
@@ -62,7 +63,7 @@ const Index = () => {
             <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
               <div className="rounded-2xl border border-brand-forest/10 bg-white/80 backdrop-blur-sm p-8 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 group">
                 <div className="w-12 h-12 bg-gradient-to-r from-brand-green to-brand-olive rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-                  <span className="text-white font-bold text-lg">B</span>
+                  <Palette className="text-white w-6 h-6" />
                 </div>
                 <h3 className="font-bold text-xl text-brand-forest mb-4">
                   Brand Identity
@@ -74,7 +75,7 @@ const Index = () => {
               </div>
               <div className="rounded-2xl border border-brand-forest/10 bg-white/80 backdrop-blur-sm p-8 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 group">
                 <div className="w-12 h-12 bg-gradient-to-r from-brand-olive to-brand-green rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-                  <span className="text-white font-bold text-lg">P</span>
+                  <FileImage className="text-white w-6 h-6" />
                 </div>
                 <h3 className="font-bold text-xl text-brand-forest mb-4">
                   Print & Posters
@@ -86,7 +87,7 @@ const Index = () => {
               </div>
               <div className="rounded-2xl border border-brand-forest/10 bg-white/80 backdrop-blur-sm p-8 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 group">
                 <div className="w-12 h-12 bg-gradient-to-r from-brand-green to-brand-olive rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-                  <span className="text-white font-bold text-lg">W</span>
+                  <Globe className="text-white w-6 h-6" />
                 </div>
                 <h3 className="font-bold text-xl text-brand-forest mb-4">
                   Web Visuals
@@ -210,7 +211,7 @@ const Index = () => {
                 asChild
                 size="lg"
                 variant="outline"
-                className="border-2 border-brand-cream/30 hover:border-brand-green hover:bg-brand-green/5 text-brand-cream hover:text-brand-green transition-all duration-300 hover:scale-105 px-8 py-6 text-lg font-semibold backdrop-blur-sm"
+                className="border-2 border-brand-cream/30 bg-brand-green/5 text-brand-cream hover:text-brand-green transition-all duration-300 hover:scale-105 px-8 py-6 text-lg font-semibold backdrop-blur-sm"
               >
                 <a href="#work" aria-label="See more work">
                   View Portfolio
